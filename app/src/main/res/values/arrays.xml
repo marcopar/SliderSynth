@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="waveforms">
+        <item>@string/waveform_sine</item>
+        <item>@string/waveform_square</item>
+        <item>@string/waveform_triangle</item>
+        <item>@string/waveform_sawtooth</item>
+        <item>@string/waveform_reversesawtooth</item>
+    </string-array>
+    <string-array name="waveforms_values">
+        <item>@string/waveform_sine_value</item>
+        <item>@string/waveform_square_value</item>
+        <item>@string/waveform_triangle_value</item>
+        <item>@string/waveform_sawtooth_value</item>
+        <item>@string/waveform_reversesawtooth_value</item>
+    </string-array>    
+    <string-array name="samplerate">
+        <item>44100</item>
+        <item>22050</item>
+        <item>11025</item>
+    </string-array>
+    <string-array name="numberofkeyboards">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="octavesperkeyboard">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+    </string-array>
+    <string-array name="firstoctave">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+	<string-array name="menu">
+	    <item>@string/mainmenu_settings</item>
+	    <item>@string/mainmenu_about</item>
+	</string-array>
+</resources>
