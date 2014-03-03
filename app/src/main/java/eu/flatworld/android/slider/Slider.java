@@ -1,9 +1,5 @@
 package eu.flatworld.android.slider;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -15,9 +11,7 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.InputProcessor;
-import com.badlogic.gdx.audio.AudioDevice;
 import com.badlogic.gdx.graphics.GL10;
-import com.badlogic.gdx.graphics.GL11;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Pixmap.Format;
@@ -27,6 +21,10 @@ import com.badlogic.gdx.graphics.g2d.NinePatch;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 
 public class Slider implements ApplicationListener, InputProcessor {	
 	public static String LOGTAG = "slider";
@@ -174,8 +172,8 @@ public class Slider implements ApplicationListener, InputProcessor {
 		
 		int bufferSize = pref.getInt("buffersize", 50);
 
-		mixer = new Mixer();
-		int byteBufferSize = MathUtils.round(sampleRate * bufferSize / 1000f);
+        mixer = new AddAndClipMixer();
+        int byteBufferSize = MathUtils.round(sampleRate * bufferSize / 1000f);
 		mixer.setBufferSize(byteBufferSize);
 		for (int i = 0; i < numberOfKeyboards; i++) {
 			int firstOctave = 4;

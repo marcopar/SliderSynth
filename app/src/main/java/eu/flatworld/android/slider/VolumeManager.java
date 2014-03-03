@@ -13,4 +13,8 @@ public class VolumeManager {
 		//float v = value * maximumVolume;
 		return maximumVolume;
 	}
+
+    public float getMaximumVolume() {
+        return maximumVolume;
+    }
 }

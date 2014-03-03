@@ -99,4 +99,7 @@ public class Keyboard {
 		sg.setTargetVolume(volumeManager.getVolume(fv));
 	}
 
+    public VolumeManager getVolumeManager() {
+        return volumeManager;
+    }
 }
