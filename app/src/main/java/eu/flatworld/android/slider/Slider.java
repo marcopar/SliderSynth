@@ -26,9 +26,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class Slider implements ApplicationListener, InputProcessor {	
-	public static String LOGTAG = "slider";
-	public static int PIXMAP_WIDTH = 1024;
+public class Slider implements ApplicationListener, InputProcessor {
+    public static String LOGTAG = "slidersynth";
+    public static int PIXMAP_WIDTH = 1024;
 	public static int PIXMAP_HEIGHT = 512;
 
 	public static int MAX_CHANNELS = 4;
