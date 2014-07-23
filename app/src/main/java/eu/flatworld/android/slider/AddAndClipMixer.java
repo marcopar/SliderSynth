@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AddAndClipMixer implements Mixer {
-    List<Keyboard> keyboards;
-	AudioTrack track;
+    List<KeyboardView> keyboards;
+    AudioTrack track;
 
 	boolean stop = false;
 	Thread thread;
@@ -20,21 +20,21 @@ public class AddAndClipMixer implements Mixer {
 	short[] buffer;
 
     public AddAndClipMixer() {
-        keyboards = new ArrayList<Keyboard>();
-	}
+        keyboards = new ArrayList<KeyboardView>();
+    }
 
     @Override
-    public void addKeyboard(Keyboard keyboard) {
+    public void addKeyboard(KeyboardView keyboard) {
         keyboards.add(keyboard);
 	}
 
     @Override
-    public void removeKeyboard(Keyboard keyboard) {
+    public void removeKeyboard(KeyboardView keyboard) {
         keyboards.remove(keyboard);
 	}
 
     @Override
-    public List<Keyboard> getKeyboards() {
+    public List<KeyboardView> getKeyboards() {
         return keyboards;
 	}
 
@@ -63,8 +63,8 @@ public class AddAndClipMixer implements Mixer {
 		for (int i = 0; i < buffer.length; i++) {
 			float val = 0;
 			for (int j = 0; j < keyboards.size(); j++) {
-				Keyboard k = keyboards.get(j);
-				List<SoundGenerator> sgg = k.getSoundGenerators();
+                KeyboardView k = keyboards.get(j);
+                List<SoundGenerator> sgg = k.getSoundGenerators();
 				for (int m = 0; m < sgg.size(); m++) {
 					SoundGenerator sg = sgg.get(m);
 					if (sg.getEnvelope().isReleased()) {

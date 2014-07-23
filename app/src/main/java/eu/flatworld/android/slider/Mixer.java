@@ -6,11 +6,11 @@ import java.util.List;
  * Created by marcopar on 03/03/14.
  */
 public interface Mixer {
-    void addKeyboard(Keyboard keyboard);
+    void addKeyboard(KeyboardView keyboard);
 
-    void removeKeyboard(Keyboard keyboard);
+    void removeKeyboard(KeyboardView keyboard);
 
-    List<Keyboard> getKeyboards();
+    List<KeyboardView> getKeyboards();
 
     int getBufferSize();
 
