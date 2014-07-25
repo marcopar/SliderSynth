@@ -2,6 +2,7 @@ package eu.flatworld.android.slider;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
@@ -29,6 +30,35 @@ public class KeyboardView extends View {
         volumeManager = new VolumeManager(maxvol);
         pointerToSoundGenerator = new HashMap<Integer, SoundGenerator>();
         setBackgroundDrawable(color);
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        int pointerIndex = event.getActionIndex();
+        int pointerId = event.getPointerId(pointerIndex);
+        int maskedAction = event.getActionMasked();
+
+        int x = (int) event.getX(pointerIndex);
+        int y = (int) event.getY(pointerIndex);
+
+        switch (maskedAction) {
+            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_POINTER_DOWN: {
+                touchDown(pointerId, x, y);
+                break;
+            }
+            case MotionEvent.ACTION_MOVE: {
+                touchDragged(pointerId, x, y);
+                break;
+            }
+            case MotionEvent.ACTION_UP:
+            case MotionEvent.ACTION_POINTER_UP:
+            case MotionEvent.ACTION_CANCEL: {
+                touchUp(pointerId, x, y);
+                break;
+            }
+        }
+        return true;
     }
 
     public String getName() {
@@ -62,11 +92,13 @@ public class KeyboardView extends View {
     }
 
     public void touchDown(int pointer, float px, float py) {
+        int w = getWidth();
+        int h = getHeight();
         SoundGenerator sg = getNextSoundGenerator();
         sg.setTimestamp(System.currentTimeMillis());
         pointerToSoundGenerator.put(pointer, sg);
-        sg.setTargetFrequency(frequencyManager.getFrequency((px - x) / w));
-        sg.setTargetVolume(volumeManager.getVolume((py - y) / h));
+        sg.setTargetFrequency(frequencyManager.getFrequency(px / w));
+        sg.setTargetVolume(volumeManager.getVolume(py / h));
         sg.getEnvelope().noteOn();
     }
 
@@ -76,9 +108,11 @@ public class KeyboardView extends View {
     }
 
     public void touchDragged(int pointer, float px, float py) {
+        int w = getWidth();
+        int h = getHeight();
         SoundGenerator sg = pointerToSoundGenerator.get(pointer);
-        float fp = (px - x) / w;
-        float fv = (py - y) / h;
+        float fp = px / w;
+        float fv = py / h;
         if (fp <= 0) {
             fp = 0;
         }

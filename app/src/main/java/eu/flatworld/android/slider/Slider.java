@@ -1,22 +1,13 @@
 package eu.flatworld.android.slider;
 
-import android.content.Context;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.preference.PreferenceManager;
-import android.util.Log;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-
 public class Slider {
+    /*
     public static String LOGTAG = "slidersynth";
     public static int PIXMAP_WIDTH = 1024;
 	public static int PIXMAP_HEIGHT = 512;
 
 	public static int MAX_CHANNELS = 4;
-	
+
 	int[] lastTx = new int[MAX_CHANNELS];
 	int[] lastTy = new int[MAX_CHANNELS];
 
@@ -83,8 +74,8 @@ public class Slider {
 		PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
 
 		showStats = pref.getBoolean("showstats", false);
-		dynamicBackground = pref.getBoolean("dynamicbackground", false);		
-		
+		dynamicBackground = pref.getBoolean("dynamicbackground", false);
+
 		int numberOfKeyboards = 2;
 		int screenLayout = context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
 		if(screenLayout == Configuration.SCREENLAYOUT_SIZE_LARGE) {
@@ -96,14 +87,14 @@ public class Slider {
 		} catch (Throwable ex) {
 			Log.w(LOGTAG, "Parse numberofkeyboards: " + ex.toString(), ex);
 		}
-		
+
 		int sampleRate = 44100;
 		try {
 			sampleRate = Integer.valueOf(pref.getString("samplerate", "44100"));
 		} catch (Throwable ex) {
 			Log.w(LOGTAG, "Parse samplerate: " + ex.toString(), ex);
 		}
-		
+
 		int bufferSize = pref.getInt("buffersize", 50);
 
         mixer = new AddAndClipMixer();
@@ -130,7 +121,7 @@ public class Slider {
 			int attack = pref.getInt("attack" + (i + 1), 50);
 			int release = pref.getInt("release" + (i + 1), 250);
 			float maxvol = pref.getInt("maxvol" + (i + 1), 20) / 100f;
-			Keyboard kbd = new Keyboard("kbd" + i, 0,
+			KeyboardView kbd = new KeyboardView("kbd" + i, 0,
 					i * h / numberOfKeyboards, w, h / numberOfKeyboards,
 					firstOctave, octavesPerKeyboard, maxvol);
 			for (int j = 0; j < MAX_CHANNELS; j++) {
@@ -155,11 +146,11 @@ public class Slider {
 	}
 
 	public boolean keyDown(int keycode) {
-        /*if (keycode == Input.Keys.MENU) {
-            Intent i = new Intent(context, SettingsActivity.class);
-			context.startActivity(i);
-		}*/
-		return false;
+        //if (keycode == Input.Keys.MENU) {
+          //  Intent i = new Intent(context, SettingsActivity.class);
+			// context.startActivity(i);
+		//}
+		//return false;
 	}
 
 	HashMap<Integer, Keyboard> pointerKeyboard = new HashMap<Integer, Keyboard>();
@@ -198,9 +189,9 @@ public class Slider {
 		}
 		lastTx[pointer] = tx;
 		lastTy[pointer] = ty;
-		
+
 		Keyboard kbd = pointerKeyboard.get(pointer);
 		kbd.touchDragged(pointer, x, y);
 		return true;
-	}
+	}*/
 }

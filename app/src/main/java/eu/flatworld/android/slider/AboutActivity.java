@@ -19,8 +19,8 @@ public class AboutActivity extends Activity implements OnClickListener {
 			version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
 		} catch(Exception ex) {
 			version = "-";
-			Log.e(Slider.LOGTAG, "Error getting version", ex);
-		}
+            Log.e(SliderSynth.LOGTAG, "Error getting version", ex);
+        }
 		
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 	    getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

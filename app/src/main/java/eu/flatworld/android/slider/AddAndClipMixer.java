@@ -114,9 +114,9 @@ public class AddAndClipMixer implements Mixer {
 				AudioFormat.ENCODING_PCM_16BIT, bufferSize,
 				AudioTrack.MODE_STREAM);
 		track.play();
-		Log.i(Slider.LOGTAG, "Minimum buffer size: " + minSize);
-		Log.i(Slider.LOGTAG, "Minimum buffer size: " + bufferSize);
-		buffer = new short[bufferSize];
+        Log.i(SliderSynth.LOGTAG, "Minimum buffer size: " + minSize);
+        Log.i(SliderSynth.LOGTAG, "Minimum buffer size: " + bufferSize);
+        buffer = new short[bufferSize];
 		stop = false;
         thread = new Thread(new Runnable() {
             public void run() {

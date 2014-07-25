@@ -1,7 +1,6 @@
 package eu.flatworld.android.slider;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -27,7 +26,6 @@ public class SliderSynth extends Activity {
 
     Mixer mixer;
     List<KeyboardView> keyboards;
-    Context context;
 
     float density;
 
@@ -35,32 +33,30 @@ public class SliderSynth extends Activity {
     boolean dynamicBackground = false;
 
     CpuLoad cpu = new CpuLoad();
-    Drawable keyboardColor[] = {getResources().getDrawable(R.drawable.keyboard_red),
-            getResources().getDrawable(R.drawable.keyboard_green),
-            getResources().getDrawable(R.drawable.keyboard_blue),
-            getResources().getDrawable(R.drawable.keyboard_yellow)};
+    Drawable keyboardColor[] = null;
 
     public SliderSynth() {
         Arrays.fill(lastTx, Integer.MAX_VALUE);
         Arrays.fill(lastTy, Integer.MAX_VALUE);
         String version;
         try {
-            version = context.getPackageManager().getPackageInfo(context.getPackageName(), 0).versionName;
+            version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
         } catch (Exception ex) {
             version = "-";
             Log.e(LOGTAG, "Error getting version", ex);
         }
+
     }
 
     void init() {
-        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(context);
-        PreferenceManager.setDefaultValues(context, R.xml.preferences, true);
+        SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
+        PreferenceManager.setDefaultValues(this, R.xml.preferences, true);
 
         showStats = pref.getBoolean("showstats", false);
         dynamicBackground = pref.getBoolean("dynamicbackground", false);
 
         int numberOfKeyboards = 2;
-        int screenLayout = context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
+        int screenLayout = getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
         if (screenLayout == Configuration.SCREENLAYOUT_SIZE_LARGE) {
             numberOfKeyboards = 4;
         }
@@ -138,6 +134,10 @@ public class SliderSynth extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        keyboardColor = new Drawable[]{getResources().getDrawable(R.drawable.keyboard_red),
+                getResources().getDrawable(R.drawable.keyboard_green),
+                getResources().getDrawable(R.drawable.keyboard_blue),
+                getResources().getDrawable(R.drawable.keyboard_yellow)};
     }
 
     @Override
