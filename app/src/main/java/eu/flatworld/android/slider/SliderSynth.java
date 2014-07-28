@@ -81,8 +81,6 @@ public class SliderSynth extends Activity {
         mixer.setBufferSize(byteBufferSize);
         ViewGroup parent = (ViewGroup) findViewById(R.id.contentLayout);
         parent.removeAllViews();
-        LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0);
-        l.weight = 1;
         for (int i = 0; i < numberOfKeyboards; i++) {
             int firstOctave = 4;
             try {
@@ -119,7 +117,9 @@ public class SliderSynth extends Activity {
                 kbd.addSoundGenerator(sg);
             }
             mixer.addKeyboard(kbd);
-            parent.addView(kbd);
+            LinearLayout.LayoutParams l = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0);
+            l.weight = 1;
+            parent.addView(kbd, l);
         }
         keyboards = mixer.getKeyboards();
         mixer.setSampleRate(sampleRate);

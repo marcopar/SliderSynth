@@ -22,16 +22,16 @@
             android:max="1000"
             android:summary="@string/preferences_buffersize_summary"
             android:title="@string/preferences_buffersize_title"/-->
-        <CheckBoxPreference
+        <!--CheckBoxPreference
             android:defaultValue="false"
             android:key="dynamicbackground"
             android:summary="@string/preferences_dynamicbackground_summary"
-            android:title="@string/preferences_dynamicbackground_title" />
-        <CheckBoxPreference
+            android:title="@string/preferences_dynamicbackground_title" /-->
+        <!--CheckBoxPreference
             android:defaultValue="false"
             android:key="showstats"
             android:summary="Show FPS and CPU load on screen"
-            android:title="Show FPS and CPU load" />
+            android:title="Show FPS and CPU load" /-->
     </PreferenceCategory>
     <PreferenceCategory
         android:key="keyboard1"
