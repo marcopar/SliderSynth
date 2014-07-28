@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.LinearLayout;
 
 import java.util.Arrays;
@@ -27,12 +28,9 @@ public class SliderSynth extends Activity {
     Mixer mixer;
     List<KeyboardView> keyboards;
 
-    float density;
-
     boolean showStats = false;
     boolean dynamicBackground = false;
 
-    CpuLoad cpu = new CpuLoad();
     Drawable keyboardColor[] = null;
 
     public SliderSynth() {
@@ -133,6 +131,7 @@ public class SliderSynth extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.main);
         keyboardColor = new Drawable[]{getResources().getDrawable(R.drawable.keyboard_red),
                 getResources().getDrawable(R.drawable.keyboard_green),
