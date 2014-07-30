@@ -1,6 +1,9 @@
 package eu.flatworld.android.slider;
 
 import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
@@ -30,6 +33,15 @@ public class KeyboardView extends View {
         volumeManager = new VolumeManager(maxvol);
         pointerToSoundGenerator = new HashMap<Integer, SoundGenerator>();
         setBackgroundDrawable(color);
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
+        Paint paint = new Paint();
+        paint.setColor(Color.WHITE);
+        paint.setTextSize(16);
+        canvas.drawText("" + soundGenerators.get(0).getOscillator().getFrequency(), getWidth() / 2, getHeight() / 2, paint);
     }
 
     @Override
@@ -100,6 +112,7 @@ public class KeyboardView extends View {
         sg.setTargetFrequency(frequencyManager.getFrequency(px / w));
         sg.setTargetVolume(volumeManager.getVolume(py / h));
         sg.getEnvelope().noteOn();
+        invalidate();
     }
 
     public void touchUp(int pointer, float px, float py) {
@@ -127,6 +140,7 @@ public class KeyboardView extends View {
         }
         sg.setTargetFrequency(frequencyManager.getFrequency(fp));
         sg.setTargetVolume(volumeManager.getVolume(fv));
+        invalidate();
     }
 
     public VolumeManager getVolumeManager() {
