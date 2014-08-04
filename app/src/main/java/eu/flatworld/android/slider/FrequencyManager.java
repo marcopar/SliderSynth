@@ -12,9 +12,9 @@ public class FrequencyManager {
 		float range = 1f / numberOfOctaves;
 
 		for (int i = 0; i < numberOfOctaves + 1; i++) {
-			int n = -8 + 12 * (i + firstOctave);
-			float f = 440 * (float) Math.pow(2, (n - 49f) / 12);
-			hz[i] = f;
+            int n = 1 + 12 * (i + firstOctave);
+            float f = 440 * (float) Math.pow(2, (n - 49f) / 12);
+            hz[i] = f;
 			hzPosition[i] = i * range;
 		}
 	}
