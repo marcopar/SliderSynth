@@ -27,11 +27,11 @@
             android:key="dynamicbackground"
             android:summary="@string/preferences_dynamicbackground_summary"
             android:title="@string/preferences_dynamicbackground_title" /-->
-        <!--CheckBoxPreference
+        <CheckBoxPreference
             android:defaultValue="false"
-            android:key="showstats"
-            android:summary="Show FPS and CPU load on screen"
-            android:title="Show FPS and CPU load" /-->
+            android:key="showtechnicaldata"
+            android:summary="Show technical data"
+            android:title="Show technical data" />
     </PreferenceCategory>
     <PreferenceCategory
         android:key="keyboard1"

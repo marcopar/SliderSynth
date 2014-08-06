@@ -24,24 +24,36 @@ public class KeyboardView extends View {
 
     HashMap<Integer, SoundGenerator> pointerToSoundGenerator;
 
+    Paint paintText = new Paint();
+    Paint paintSemitone = new Paint();
+
+    boolean showTechicalData = false;
+
     public KeyboardView(Context context, String name, int firstOctave, int numberOfOctaves, float maxvol,
-                        Drawable color) {
+                        Drawable color, boolean showTechnicalData) {
         super(context);
         this.name = name;
+        this.showTechicalData = showTechnicalData;
         soundGenerators = new ArrayList<SoundGenerator>();
         frequencyManager = new FrequencyManager(firstOctave, numberOfOctaves);
         volumeManager = new VolumeManager(maxvol);
         pointerToSoundGenerator = new HashMap<Integer, SoundGenerator>();
         setBackgroundDrawable(color);
+        paintText.setColor(Color.WHITE);
+        paintText.setTextSize(16);
+        paintSemitone.setColor(0xFF202020);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        Paint paint = new Paint();
-        paint.setColor(Color.WHITE);
-        paint.setTextSize(16);
-        canvas.drawText("" + soundGenerators.get(0).getOscillator().getFrequency(), getWidth() / 2, getHeight() / 2, paint);
+        int semitones = frequencyManager.getNumberOfOctaves() * 12;
+        for (int i = 1; i < semitones; i++) {
+            canvas.drawLine(i * getWidth() / semitones, 0, i * getWidth() / semitones, getHeight(), paintSemitone);
+        }
+        if (showTechicalData) {
+            canvas.drawText(String.format("%.1f Hz", soundGenerators.get(0).getOscillator().getFrequency()), 20, getHeight() - 20, paintText);
+        }
     }
 
     @Override
@@ -147,4 +159,7 @@ public class KeyboardView extends View {
         return volumeManager;
     }
 
+    public FrequencyManager getFrequencyManager() {
+        return frequencyManager;
+    }
 }

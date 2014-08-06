@@ -1,13 +1,15 @@
 package eu.flatworld.android.slider;
 
-import android.util.Log;
-
 public class FrequencyManager {
 	float hz[] = null;
 	float hzPosition[] = null;
+    int firstOctave;
+    int numberOfOctaves;
 
 	public FrequencyManager(int firstOctave, int numberOfOctaves) {
-		hz = new float[numberOfOctaves + 1];
+        this.firstOctave = firstOctave;
+        this.numberOfOctaves = numberOfOctaves;
+        hz = new float[numberOfOctaves + 1];
 		hzPosition = new float[numberOfOctaves + 1];
 		float range = 1f / numberOfOctaves;
 
@@ -19,8 +21,16 @@ public class FrequencyManager {
 		}
 	}
 
-	public float getFrequency(float value) {
-		float min = 1;
+    public int getFirstOctave() {
+        return firstOctave;
+    }
+
+    public int getNumberOfOctaves() {
+        return numberOfOctaves;
+    }
+
+    public float getFrequency(float value) {
+        float min = 1;
 		float max = 0;
 		int minpos = 0;
 		int maxpos = 1;
