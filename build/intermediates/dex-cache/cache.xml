@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/pre-dexed/release/support-v4-19.1.0-638f9bbc8f91563475fd5004281b759c89554192.jar"
+        jar="/home/marcopar/programmi/android-studio/sdk/extras/android/m2repository/com/android/support/support-v4/19.1.0/support-v4-19.1.0.jar"
+        jumboMode="false" revision="20.0.0" sha1="85f201b380937e61a9dce6ca90ccf6872abbfb67" />
+    <item
+        dex="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/pre-dexed/release/classes-1482e0ec478842a91e59b227f3e41338cc0f8397.jar"
+        jar="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.1.0/classes.jar"
+        jumboMode="false" revision="20.0.0" sha1="3499ceba05ca1f6037c6a2fad73df8f636224a28" />
+
+</pre-dex-items>

@@ -28,9 +28,6 @@ public class SliderSynth extends Activity {
     Mixer mixer;
     List<KeyboardView> keyboards;
 
-    boolean showTechnicalData = false;
-    boolean dynamicBackground = false;
-
     Drawable keyboardColor[] = null;
 
     public SliderSynth() {
@@ -50,8 +47,8 @@ public class SliderSynth extends Activity {
         SharedPreferences pref = PreferenceManager.getDefaultSharedPreferences(this);
         PreferenceManager.setDefaultValues(this, R.xml.preferences, true);
 
-        showTechnicalData = pref.getBoolean("showtechnicaldata", false);
-        dynamicBackground = pref.getBoolean("dynamicbackground", false);
+        boolean showSemitonesLines = pref.getBoolean("showsemitoneslines", true);
+        boolean showSemitonesNames = pref.getBoolean("showsemitonesnames", true);
 
         int numberOfKeyboards = 2;
         int screenLayout = getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
@@ -102,7 +99,7 @@ public class SliderSynth extends Activity {
             int release = pref.getInt("release" + (i + 1), 250);
             float maxvol = pref.getInt("maxvol" + (i + 1), 20) / 100f;
             KeyboardView kbd = new KeyboardView(this, "kbd" + i,
-                    firstOctave, octavesPerKeyboard, maxvol, keyboardColor[i], showTechnicalData);
+                    firstOctave, octavesPerKeyboard, maxvol, keyboardColor[i], showSemitonesLines, showSemitonesNames);
             for (int j = 0; j < MAX_CHANNELS; j++) {
                 SoundGenerator sg = new SoundGenerator(sampleRate);
                 sg.getOscillator().setWaveForm(

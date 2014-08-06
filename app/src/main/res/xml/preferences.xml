@@ -16,22 +16,16 @@
             android:key="numberofkeyboards"
             android:summary="@string/preferences_numberofkeyboards_summary"
             android:title="@string/preferences_numberofkeyboards_title" />
-        <!-- eu.flatworld.android.slider.SeekBarPreference
-            android:defaultValue="50"
-            android:key="buffersize"
-            android:max="1000"
-            android:summary="@string/preferences_buffersize_summary"
-            android:title="@string/preferences_buffersize_title"/-->
-        <!--CheckBoxPreference
-            android:defaultValue="false"
-            android:key="dynamicbackground"
-            android:summary="@string/preferences_dynamicbackground_summary"
-            android:title="@string/preferences_dynamicbackground_title" /-->
         <CheckBoxPreference
-            android:defaultValue="false"
-            android:key="showtechnicaldata"
-            android:summary="Show technical data"
-            android:title="Show technical data" />
+            android:defaultValue="true"
+            android:key="showsemitoneslines"
+            android:summary="@string/preferences_showsemitoneslines_summary"
+            android:title="@string/preferences_showsemitoneslines_title" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="showsemitonesnames"
+            android:summary="@string/preferences_showsemitonesnames_summary"
+            android:title="@string/preferences_showsemitonesnames_title" />
     </PreferenceCategory>
     <PreferenceCategory
         android:key="keyboard1"

@@ -1,5 +1,6 @@
 package eu.flatworld.android.slider;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -27,33 +28,43 @@ public class KeyboardView extends View {
     Paint paintText = new Paint();
     Paint paintSemitone = new Paint();
 
-    boolean showTechicalData = false;
+    boolean showSemitonesLines = false;
+    boolean showSemitonesNames = false;
+
+    final static String semitonesNames[] = {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
 
     public KeyboardView(Context context, String name, int firstOctave, int numberOfOctaves, float maxvol,
-                        Drawable color, boolean showTechnicalData) {
+                        Drawable color, boolean showSemitonesLines, boolean showSemitonesNames) {
         super(context);
         this.name = name;
-        this.showTechicalData = showTechnicalData;
+        this.showSemitonesLines = showSemitonesLines;
+        this.showSemitonesNames = showSemitonesNames;
         soundGenerators = new ArrayList<SoundGenerator>();
         frequencyManager = new FrequencyManager(firstOctave, numberOfOctaves);
         volumeManager = new VolumeManager(maxvol);
         pointerToSoundGenerator = new HashMap<Integer, SoundGenerator>();
         setBackgroundDrawable(color);
-        paintText.setColor(Color.WHITE);
-        paintText.setTextSize(16);
-        paintSemitone.setColor(0xFF202020);
+        paintText.setColor(0xFFF0F0F0);
+        paintText.setTextSize(20);
+        paintSemitone.setColor(0xFFF0F0F0);
+        paintSemitone.setStrokeWidth(2);
     }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         int semitones = frequencyManager.getNumberOfOctaves() * 12;
-        for (int i = 1; i < semitones; i++) {
-            canvas.drawLine(i * getWidth() / semitones, 0, i * getWidth() / semitones, getHeight(), paintSemitone);
+        if (showSemitonesLines) {
+            for (int i = 1; i < semitones; i++) {
+                canvas.drawLine(i * getWidth() / semitones, 0, i * getWidth() / semitones, getHeight(), paintSemitone);
+            }
         }
-        if (showTechicalData) {
-            canvas.drawText(String.format("%.1f Hz", soundGenerators.get(0).getOscillator().getFrequency()), 20, getHeight() - 20, paintText);
+        if (showSemitonesNames) {
+            for (int i = 0; i < semitones; i++) {
+                canvas.drawText(semitonesNames[i % 12], i * getWidth() / semitones + 5, 23, paintText);
+            }
         }
+        //canvas.drawText(String.format("%.1f Hz", soundGenerators.get(0).getOscillator().getFrequency()), 20, getHeight() - 20, paintText);
     }
 
     @Override

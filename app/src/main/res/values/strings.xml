@@ -47,5 +47,8 @@
     <string name="title_activity_slider_synth">Slider Synth</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-
+    <string name="preferences_showsemitoneslines_title">Show semitones lines</string>
+    <string name="preferences_showsemitoneslines_summary">Show lines corresponding to semitones</string>
+    <string name="preferences_showsemitonesnames_title">Show semitones names</string>
+    <string name="preferences_showsemitonesnames_summary">Show the name of the semitones</string>
 </resources>
