@@ -105,7 +105,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="6.8106311"
-     inkscape:cx="264.42372"
+     inkscape:cx="264.6177"
      inkscape:cy="855.15022"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
@@ -145,89 +145,99 @@
        sodipodi:linespacing="125%"><tspan
          sodipodi:role="line"
          id="tspan3840" /></text>
-    <rect
-       style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.33474039999999983;stroke-opacity:1"
-       id="rect3812"
-       width="100.06526"
-       height="47.66526"
-       x="215.11967"
-       y="169.34763"
-       inkscape:export-filename="/home/marcopar/AndroidStudioProjects/SliderSynth/svg/primopiano.png"
-       inkscape:export-xdpi="900"
-       inkscape:export-ydpi="900" />
     <g
-       id="g3949"
-       transform="translate(1.8309172,5.2858444)"
+       id="g3799"
        inkscape:export-filename="/home/marcopar/AndroidStudioProjects/SliderSynth/svg/primopiano.png"
        inkscape:export-xdpi="900"
        inkscape:export-ydpi="900">
-      <path
-         inkscape:connector-curvature="0"
-         id="path4217"
-         d="m 258.43016,183.89441 -5,0 0,8 10,0 0,-8 5,0 0,-8 -10,0 c 0,23.04731 0,4.66667 0,8 z"
-         style="fill:#800000;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter4279)"
-         sodipodi:nodetypes="ccccccccc" />
-      <path
-         inkscape:connector-curvature="0"
-         id="path4219"
-         d="m 258.43016,188.89441 0,-5"
-         style="fill:#800000;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter4275)" />
-      <path
-         inkscape:connector-curvature="0"
-         id="path4221"
-         d="m 263.43016,183.89441 0,-5"
-         style="fill:#800000;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter4271)" />
+      <rect
+         inkscape:export-ydpi="900"
+         inkscape:export-xdpi="900"
+         inkscape:export-filename="/home/marcopar/AndroidStudioProjects/SliderSynth/svg/primopiano.png"
+         y="167.01289"
+         x="215.11967"
+         height="50"
+         width="102.4"
+         id="rect3812"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:none" />
       <g
-         style="fill:#004000;fill-opacity:1;stroke:#00ff00;stroke-opacity:1"
-         id="g4283-2"
-         transform="translate(58.430163,-0.4677671)">
-        <path
-           sodipodi:nodetypes="ccccccccc"
-           style="fill:#004000;fill-opacity:1;stroke:#00ff00;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter4279-2)"
-           d="m 205,192.36218 -5,0 0,8 10,0 0,-8 5,0 0,-8 -10,0 z"
-           id="path4217-3"
-           inkscape:connector-curvature="0" />
-        <path
-           style="fill:#004000;fill-opacity:1;stroke:#00ff00;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter4275-9)"
-           d="m 205,197.36218 0,-5"
-           id="path4219-6"
-           inkscape:connector-curvature="0" />
-        <path
-           style="fill:#004000;fill-opacity:1;stroke:#00ff00;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter4271-6)"
-           d="m 210,192.36218 0,-5"
-           id="path4221-9"
-           inkscape:connector-curvature="0" />
+         transform="translate(1.1585808,-1.1673622)"
+         id="g3785">
+        <g
+           id="g3949"
+           transform="translate(1.8309172,5.2858444)"
+           inkscape:export-filename="/home/marcopar/AndroidStudioProjects/SliderSynth/svg/primopiano.png"
+           inkscape:export-xdpi="900"
+           inkscape:export-ydpi="900">
+          <path
+             inkscape:connector-curvature="0"
+             id="path4217"
+             d="m 258.43016,183.89441 -5,0 0,8 10,0 0,-8 5,0 0,-8 -10,0 c 0,23.04731 0,4.66667 0,8 z"
+             style="fill:#800000;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter4279)"
+             sodipodi:nodetypes="ccccccccc" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4219"
+             d="m 258.43016,188.89441 0,-5"
+             style="fill:#800000;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter4275)" />
+          <path
+             inkscape:connector-curvature="0"
+             id="path4221"
+             d="m 263.43016,183.89441 0,-5"
+             style="fill:#800000;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter4271)" />
+          <g
+             style="fill:#004000;fill-opacity:1;stroke:#00ff00;stroke-opacity:1"
+             id="g4283-2"
+             transform="translate(58.430163,-0.4677671)">
+            <path
+               sodipodi:nodetypes="ccccccccc"
+               style="fill:#004000;fill-opacity:1;stroke:#00ff00;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter4279-2)"
+               d="m 205,192.36218 -5,0 0,8 10,0 0,-8 5,0 0,-8 -10,0 z"
+               id="path4217-3"
+               inkscape:connector-curvature="0" />
+            <path
+               style="fill:#004000;fill-opacity:1;stroke:#00ff00;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter4275-9)"
+               d="m 205,197.36218 0,-5"
+               id="path4219-6"
+               inkscape:connector-curvature="0" />
+            <path
+               style="fill:#004000;fill-opacity:1;stroke:#00ff00;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;filter:url(#filter4271-6)"
+               d="m 210,192.36218 0,-5"
+               id="path4221-9"
+               inkscape:connector-curvature="0" />
+          </g>
+        </g>
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="227.09834"
+           y="196.53108"
+           id="text3842"
+           sodipodi:linespacing="125%"
+           inkscape:export-filename="/home/marcopar/AndroidStudioProjects/SliderSynth/svg/primopiano.png"
+           inkscape:export-xdpi="900"
+           inkscape:export-ydpi="900"><tspan
+             sodipodi:role="line"
+             id="tspan3844"
+             x="227.09834"
+             y="196.53108"
+             style="font-size:9px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;font-family:Verdana;-inkscape-font-specification:Verdana">Slider</tspan></text>
+        <text
+           xml:space="preserve"
+           style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
+           x="277.09836"
+           y="196.53108"
+           id="text3842-6"
+           sodipodi:linespacing="125%"
+           inkscape:export-filename="/home/marcopar/AndroidStudioProjects/SliderSynth/svg/primopiano.png"
+           inkscape:export-xdpi="900"
+           inkscape:export-ydpi="900"><tspan
+             sodipodi:role="line"
+             id="tspan3844-7"
+             x="277.09836"
+             y="196.53108"
+             style="font-size:9px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;font-family:Verdana;-inkscape-font-specification:Verdana">Synth</tspan></text>
       </g>
     </g>
-    <text
-       xml:space="preserve"
-       style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="227.09834"
-       y="196.53108"
-       id="text3842"
-       sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/marcopar/AndroidStudioProjects/SliderSynth/svg/primopiano.png"
-       inkscape:export-xdpi="900"
-       inkscape:export-ydpi="900"><tspan
-         sodipodi:role="line"
-         id="tspan3844"
-         x="227.09834"
-         y="196.53108"
-         style="font-size:9px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;font-family:Verdana;-inkscape-font-specification:Verdana;fill-opacity:1">Slider</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:16px;font-style:normal;font-weight:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans"
-       x="277.09836"
-       y="196.53108"
-       id="text3842-6"
-       sodipodi:linespacing="125%"
-       inkscape:export-filename="/home/marcopar/AndroidStudioProjects/SliderSynth/svg/primopiano.png"
-       inkscape:export-xdpi="900"
-       inkscape:export-ydpi="900"><tspan
-         sodipodi:role="line"
-         id="tspan3844-7"
-         x="277.09836"
-         y="196.53108"
-         style="font-size:9px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;font-family:Verdana;-inkscape-font-specification:Verdana;fill-opacity:1">Synth</tspan></text>
   </g>
 </svg>
