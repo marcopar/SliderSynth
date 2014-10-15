@@ -51,4 +51,8 @@
     <string name="preferences_showsemitoneslines_summary">Show lines corresponding to semitones</string>
     <string name="preferences_showsemitonesnames_title">Show semitones names</string>
     <string name="preferences_showsemitonesnames_summary">Show the name of the semitones</string>
+    <string name="echo_delay">Echo delay (ms)</string>
+    <string name="echo_delay_summary"></string>
+    <string name="echo_decay">Echo decay</string>
+    <string name="echo_decay_summary">Echo decay per delay. 100=No decay, 0=total decay.</string>
 </resources>

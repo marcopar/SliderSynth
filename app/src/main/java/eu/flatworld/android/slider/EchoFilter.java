@@ -15,7 +15,7 @@ Disponibilite : Disponible a la librairie
 */
 
 
-class EchoFilter {
+class EchoFilter implements Filter {
 
     private short[] delayBuffer;
 
@@ -57,6 +57,7 @@ class EchoFilter {
     /**
      * Clears this EchoFilter's internal delay buffer.
      */
+    @Override
     public void reset() {
         for (int i = 0; i < delayBuffer.length; i++) {
             delayBuffer[i] = 0;
@@ -69,6 +70,7 @@ class EchoFilter {
      * the sound in the delay buffer multipied by the decay rate. The result is
      * then stored in the delay buffer, so multiple echoes are heard.
      */
+    @Override
     public void filter(short[] samples, int offset, int length) {
 
         for (int i = offset; i < offset + length; i++) {

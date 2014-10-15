@@ -18,10 +18,17 @@ public class AddAndClipMixer implements Mixer {
     int sampleRate;
     int bufferSize = 44100;
     short[] buffer;
-    EchoFilter ef = new EchoFilter(1 * 44100, 0.6f);
+    float[] tmpbuffer;
+    float[] fbuffer;
+    Filter filter;
 
     public AddAndClipMixer() {
         keyboards = new ArrayList<KeyboardView>();
+    }
+
+    @Override
+    public void setFilter(Filter filter) {
+        this.filter = filter;
     }
 
     @Override
@@ -59,21 +66,35 @@ public class AddAndClipMixer implements Mixer {
         this.sampleRate = sampleRate;
     }
 
+    void sumBuffers(float[] dest, float[] src) {
+        for (int i = 0; i < dest.length; i++) {
+            dest[i] += src[i];
+        }
+    }
+
+    void setBuffer(float[] dest, float value) {
+        for (int i = 0; i < dest.length; i++) {
+            dest[i] = value;
+        }
+    }
+
     void fillBuffer(short[] buffer) {
         // Log.d(Slider.LOGTAG, "Start fill");
-        for (int i = 0; i < buffer.length; i++) {
-            float val = 0;
-            for (int j = 0; j < keyboards.size(); j++) {
-                KeyboardView k = keyboards.get(j);
-                List<SoundGenerator> sgg = k.getSoundGenerators();
-                for (int m = 0; m < sgg.size(); m++) {
-                    SoundGenerator sg = sgg.get(m);
-                    if (sg.getEnvelope().isReleased()) {
-                        continue;
-                    }
-                    val += sg.getValue();
+        setBuffer(fbuffer, 0);
+        for (int j = 0; j < keyboards.size(); j++) {
+            KeyboardView k = keyboards.get(j);
+            List<SoundGenerator> sgg = k.getSoundGenerators();
+            for (int m = 0; m < sgg.size(); m++) {
+                SoundGenerator sg = sgg.get(m);
+                if (sg.getEnvelope().isReleased()) {
+                    continue;
                 }
+                sg.getValues(tmpbuffer);
+                sumBuffers(fbuffer, tmpbuffer);
             }
+        }
+        for (int i = 0; i < buffer.length; i++) {
+            float val = fbuffer[i];
             if (val > 1) {
                 val = 1;
             }
@@ -88,7 +109,9 @@ public class AddAndClipMixer implements Mixer {
     void doMix() {
         while (!stop) {
             fillBuffer(buffer);
-            ef.filter(buffer, 0, buffer.length);
+            if (filter != null) {
+                filter.filter(buffer, 0, buffer.length);
+            }
             int n = track.write(buffer, 0, bufferSize);
             // Log.d(Slider.LOGTAG, String.format("Write buffer %d/%d", n,
             // buffer.length));
@@ -118,6 +141,8 @@ public class AddAndClipMixer implements Mixer {
         Log.i(SliderSynth.LOGTAG, "Minimum buffer size: " + minSize);
         Log.i(SliderSynth.LOGTAG, "Minimum buffer size: " + bufferSize);
         buffer = new short[bufferSize];
+        fbuffer = new float[bufferSize];
+        tmpbuffer = new float[bufferSize];
         stop = false;
         thread = new Thread(new Runnable() {
             public void run() {

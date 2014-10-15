@@ -52,18 +52,20 @@ public class SoundGenerator {
         return timestamp;
     }
 
-    public float getValue() {
-        long cs = oscillator.getCurrentSample();
-        if (cs == 0) {
-            oscillator.setFrequency(targetFrequency);
-            //lagProcessor.setTargetValue(targetVolume);
-            envelope.setSustain(targetVolume);
-            envelope.setMax(targetVolume);
+    public void getValues(float[] values) {
+        for (int i = 0; i < values.length; i++) {
+            long cs = oscillator.getCurrentSample();
+            if (cs == 0) {
+                oscillator.setFrequency(targetFrequency);
+                //lagProcessor.setTargetValue(targetVolume);
+                envelope.setSustain(targetVolume);
+                envelope.setMax(targetVolume);
+            }
+            float o = oscillator.getValue();
+            float e = envelope.getValue();
+            //float lp2 = lagProcessor.getValue();
+            float lp = 1;
+            values[i] = o * e * lp;
         }
-        float o = oscillator.getValue();
-        float e = envelope.getValue();
-        //float lp2 = lagProcessor.getValue();
-        float lp = 1;
-        return o * e * lp;
     }
 }
