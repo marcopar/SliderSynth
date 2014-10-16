@@ -134,7 +134,7 @@ public class Envelope {
     /**
      * Invoked when the note is pressed.
      */
-    public void noteOn() {
+    public synchronized void noteOn() {
         if (state == State.DONE) {
             currentSample = 0;
         } else {
@@ -149,12 +149,13 @@ public class Envelope {
         }
         //recalculateSlopes();
         state = State.ATTACK;
+        //Log.d(SliderSynth.LOGTAG, "n on" + state.toString());
     }
 
     /**
      * Invoked when the note is released.
      */
-    public void noteOff() {
+    public synchronized void noteOff() {
         state = State.RELEASE;
         releaseStartValue = lastValue;
         if (release == 0) {
@@ -164,12 +165,13 @@ public class Envelope {
         }
         releaseStart = currentSample;
         releaseEnd = currentSample + release;
+        //Log.d(SliderSynth.LOGTAG, "n off" + state.toString());
     }
 
     /**
      * @return true when the note has finished playing.
      */
-    public boolean isReleased() {
+    public boolean isDone() {
         return (state == State.DONE);
     }
 
@@ -179,18 +181,22 @@ public class Envelope {
         if (state == State.ATTACK || state == State.DECAY) {
             if (currentSample > decayEnd) {
                 state = State.SUSTAIN;
+                //Log.d(SliderSynth.LOGTAG, state.toString());
             } else if (currentSample > attack) {
                 state = State.DECAY;
+                //Log.d(SliderSynth.LOGTAG, state.toString());
             }
         }
         if (state == State.SUSTAIN) {
             if (sustain <= 0) {
                 state = State.DONE;
+                //Log.d(SliderSynth.LOGTAG, state.toString());
             }
         }
         if (state == State.RELEASE) {
             if (currentSample > releaseEnd) {
                 state = State.DONE;
+                //Log.d(SliderSynth.LOGTAG, state.toString());
             }
         }
         switch (state) {

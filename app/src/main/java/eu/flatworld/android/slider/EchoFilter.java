@@ -1,6 +1,6 @@
 package eu.flatworld.android.slider;
 
-       /*
+/*
 DEVELOPING GAME IN JAVA
 
 Caracteristiques
@@ -17,7 +17,7 @@ Disponibilite : Disponible a la librairie
 
 class EchoFilter implements Filter {
 
-    private short[] delayBuffer;
+    private float[] delayBuffer;
 
     private int delayBufferPos;
 
@@ -35,23 +35,8 @@ class EchoFilter implements Filter {
      * value of .5 means the echo heard is half as loud as the source.
      */
     public EchoFilter(int numDelaySamples, float decay) {
-        delayBuffer = new short[numDelaySamples];
+        delayBuffer = new float[numDelaySamples];
         this.decay = decay;
-    }
-
-    /**
-     * Gets the remaining size, in bytes, of samples that this filter can echo
-     * after the sound is done playing. Ensures that the sound will have decayed
-     * to below 1% of maximum volume (amplitude).
-     */
-    public int getRemainingSize() {
-        float finalDecay = 0.01f;
-        // derived from Math.pow(decay,x) <= finalDecay
-        int numRemainingBuffers = (int) Math.ceil(Math.log(finalDecay)
-                / Math.log(decay));
-        int bufferSize = delayBuffer.length * 2;
-
-        return bufferSize * numRemainingBuffers;
     }
 
     /**
@@ -71,13 +56,12 @@ class EchoFilter implements Filter {
      * then stored in the delay buffer, so multiple echoes are heard.
      */
     @Override
-    public void filter(short[] samples, int offset, int length) {
+    public void filter(float[] samples, int offset, int length) {
 
         for (int i = offset; i < offset + length; i++) {
             // update the sample
-            short oldSample = samples[i];
-            short newSample = (short) Math.round(oldSample + decay
-                    * delayBuffer[delayBufferPos]);
+            float oldSample = samples[i];
+            float newSample = oldSample + decay * delayBuffer[delayBufferPos];
             samples[i] = newSample;
 
             // update the delay buffer

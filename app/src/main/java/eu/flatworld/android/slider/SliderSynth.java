@@ -78,29 +78,18 @@ public class SliderSynth extends Activity {
         ViewGroup parent = (ViewGroup) findViewById(R.id.contentLayout);
         parent.removeAllViews();
         for (int i = 0; i < numberOfKeyboards; i++) {
-            int firstOctave = 4;
-            try {
-                firstOctave = Integer.valueOf(pref.getString("firstoctave"
-                        + (i + 1), "4"));
-            } catch (Throwable ex) {
-                Log.w(LOGTAG,
-                        "Parse firstoctave " + (i + 1) + ": " + ex.toString(), ex);
-            }
-            int octavesPerKeyboard = 2;
-            try {
-                octavesPerKeyboard = Integer.valueOf(pref.getString(
-                        "octavesperkeyboard" + (i + 1), "2"));
-            } catch (Throwable ex) {
-                Log.w(LOGTAG,
-                        "Parse octavesperkeyboard " + (i + 1) + ": "
-                                + ex.toString(), ex
-                );
-            }
+            int firstOctave = Integer.valueOf(pref.getString("firstoctave" + (i + 1), "4"));
+            int octavesPerKeyboard = Integer.valueOf(pref.getString("octavesperkeyboard" + (i + 1), "2"));
             int attack = pref.getInt("attack" + (i + 1), 50);
             int release = pref.getInt("release" + (i + 1), 250);
             float maxvol = pref.getInt("maxvol" + (i + 1), 20) / 100f;
+            int echodelay = pref.getInt("echodelay" + (i + 1), 500);
+            float echodecay = pref.getInt("echodecay" + (i + 1), 20) / 100f;
             KeyboardView kbd = new KeyboardView(this, "kbd" + i,
                     firstOctave, octavesPerKeyboard, maxvol, keyboardColor[i], showSemitonesLines, showSemitonesNames);
+            //EchoFilter ef = new EchoFilter(sampleRate * echodelay / 1000, echodecay);
+            EchoFilter ef = new EchoFilter(sampleRate, 0.5f);
+            kbd.setFilter(ef);
             for (int j = 0; j < MAX_CHANNELS; j++) {
                 SoundGenerator sg = new SoundGenerator(sampleRate);
                 sg.getOscillator().setWaveForm(

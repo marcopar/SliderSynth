@@ -16,19 +16,14 @@ public class AddAndClipMixer implements Mixer {
     Thread thread;
 
     int sampleRate;
-    int bufferSize = 44100;
+    int bufferSize = 0;
     short[] buffer;
-    float[] tmpbuffer;
-    float[] fbuffer;
-    Filter filter;
+    float[] tmpBuffer;
+    float[] finalBuffer;
+    float[] keyboardBuffer;
 
     public AddAndClipMixer() {
         keyboards = new ArrayList<KeyboardView>();
-    }
-
-    @Override
-    public void setFilter(Filter filter) {
-        this.filter = filter;
     }
 
     @Override
@@ -80,21 +75,27 @@ public class AddAndClipMixer implements Mixer {
 
     void fillBuffer(short[] buffer) {
         // Log.d(Slider.LOGTAG, "Start fill");
-        setBuffer(fbuffer, 0);
+        setBuffer(finalBuffer, 0);
         for (int j = 0; j < keyboards.size(); j++) {
+            setBuffer(keyboardBuffer, 0);
             KeyboardView k = keyboards.get(j);
             List<SoundGenerator> sgg = k.getSoundGenerators();
             for (int m = 0; m < sgg.size(); m++) {
                 SoundGenerator sg = sgg.get(m);
-                if (sg.getEnvelope().isReleased()) {
+                if (sg.getEnvelope().isDone()) {
                     continue;
                 }
-                sg.getValues(tmpbuffer);
-                sumBuffers(fbuffer, tmpbuffer);
+                sg.getValues(tmpBuffer);
+                sumBuffers(keyboardBuffer, tmpBuffer);
             }
+            Filter filter = k.getFilter();
+            if (filter != null) {
+                filter.filter(keyboardBuffer, 0, keyboardBuffer.length);
+            }
+            sumBuffers(finalBuffer, keyboardBuffer);
         }
         for (int i = 0; i < buffer.length; i++) {
-            float val = fbuffer[i];
+            float val = finalBuffer[i];
             if (val > 1) {
                 val = 1;
             }
@@ -107,14 +108,14 @@ public class AddAndClipMixer implements Mixer {
     }
 
     void doMix() {
+        android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_AUDIO);
         while (!stop) {
+            long t = System.currentTimeMillis();
             fillBuffer(buffer);
-            if (filter != null) {
-                filter.filter(buffer, 0, buffer.length);
-            }
+            Log.d(SliderSynth.LOGTAG, String.format("fill %d", (System.currentTimeMillis() - t)));
+            t = System.currentTimeMillis();
             int n = track.write(buffer, 0, bufferSize);
-            // Log.d(Slider.LOGTAG, String.format("Write buffer %d/%d", n,
-            // buffer.length));
+            Log.d(SliderSynth.LOGTAG, String.format("write %d", (System.currentTimeMillis() - t)));
         }
     }
 
@@ -139,10 +140,11 @@ public class AddAndClipMixer implements Mixer {
                 AudioTrack.MODE_STREAM);
         track.play();
         Log.i(SliderSynth.LOGTAG, "Minimum buffer size: " + minSize);
-        Log.i(SliderSynth.LOGTAG, "Minimum buffer size: " + bufferSize);
+        Log.i(SliderSynth.LOGTAG, "Buffer size: " + bufferSize);
         buffer = new short[bufferSize];
-        fbuffer = new float[bufferSize];
-        tmpbuffer = new float[bufferSize];
+        finalBuffer = new float[bufferSize];
+        tmpBuffer = new float[bufferSize];
+        keyboardBuffer = new float[bufferSize];
         stop = false;
         thread = new Thread(new Runnable() {
             public void run() {

@@ -6,5 +6,5 @@ package eu.flatworld.android.slider;
 public interface Filter {
     void reset();
 
-    void filter(short[] samples, int offset, int length);
+    void filter(float[] samples, int offset, int length);
 }

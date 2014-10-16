@@ -24,5 +24,4 @@ public interface Mixer {
 
     void stop();
 
-    void setFilter(Filter filter);
 }

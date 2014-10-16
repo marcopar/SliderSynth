@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -20,6 +21,7 @@ public class KeyboardView extends View {
     List<SoundGenerator> soundGenerators;
     FrequencyManager frequencyManager;
     VolumeManager volumeManager;
+    Filter filter;
 
     HashMap<Integer, SoundGenerator> pointerToSoundGenerator;
 
@@ -102,6 +104,14 @@ public class KeyboardView extends View {
         this.name = name;
     }
 
+    public void setFilter(Filter filter) {
+        this.filter = filter;
+    }
+
+    public Filter getFilter() {
+        return filter;
+    }
+
     public void addSoundGenerator(SoundGenerator soundGenerator) {
         soundGenerators.add(soundGenerator);
     }
@@ -125,6 +135,7 @@ public class KeyboardView extends View {
     }
 
     public void touchDown(int pointer, float px, float py) {
+        Log.d(SliderSynth.LOGTAG, "T DOWN");
         int w = getWidth();
         int h = getHeight();
         SoundGenerator sg = getNextSoundGenerator();
@@ -137,6 +148,7 @@ public class KeyboardView extends View {
     }
 
     public void touchUp(int pointer, float px, float py) {
+        Log.d(SliderSynth.LOGTAG, "T UP");
         SoundGenerator sg = pointerToSoundGenerator.get(pointer);
         sg.getEnvelope().noteOff();
     }
