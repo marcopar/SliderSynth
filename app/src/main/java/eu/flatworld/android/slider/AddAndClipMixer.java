@@ -13,14 +13,18 @@ public class AddAndClipMixer implements Mixer {
     AudioTrack track;
 
     boolean stop = false;
-    Thread thread;
+    Thread threadMix;
+    Thread threadWrite;
 
     int sampleRate;
     int bufferSize = 0;
-    short[] buffer;
+    short[] mixBuffer;
+    short[] writeBuffer;
     float[] tmpBuffer;
     float[] finalBuffer;
     float[] keyboardBuffer;
+
+    CircularBuffer cb;
 
     public AddAndClipMixer() {
         keyboards = new ArrayList<KeyboardView>();
@@ -61,8 +65,8 @@ public class AddAndClipMixer implements Mixer {
         this.sampleRate = sampleRate;
     }
 
-    void sumBuffers(float[] dest, float[] src) {
-        for (int i = 0; i < dest.length; i++) {
+    void sumBuffers(float[] dest, float[] src, int n) {
+        for (int i = 0; i < n; i++) {
             dest[i] += src[i];
         }
     }
@@ -73,8 +77,7 @@ public class AddAndClipMixer implements Mixer {
         }
     }
 
-    void fillBuffer(short[] buffer) {
-        // Log.d(Slider.LOGTAG, "Start fill");
+    void fillBuffer(short[] buffer, int n) {
         setBuffer(finalBuffer, 0);
         for (int j = 0; j < keyboards.size(); j++) {
             setBuffer(keyboardBuffer, 0);
@@ -85,16 +88,16 @@ public class AddAndClipMixer implements Mixer {
                 if (sg.getEnvelope().isDone()) {
                     continue;
                 }
-                sg.getValues(tmpBuffer);
-                sumBuffers(keyboardBuffer, tmpBuffer);
+                sg.getValues(tmpBuffer, n);
+                sumBuffers(keyboardBuffer, tmpBuffer, n);
             }
             Filter filter = k.getFilter();
             if (filter != null) {
-                filter.filter(keyboardBuffer, 0, keyboardBuffer.length);
+                filter.filter(keyboardBuffer, 0, n);
             }
-            sumBuffers(finalBuffer, keyboardBuffer);
+            sumBuffers(finalBuffer, keyboardBuffer, n);
         }
-        for (int i = 0; i < buffer.length; i++) {
+        for (int i = 0; i < n; i++) {
             float val = finalBuffer[i];
             if (val > 1) {
                 val = 1;
@@ -104,17 +107,24 @@ public class AddAndClipMixer implements Mixer {
             }
             buffer[i] = (short) (val * Short.MAX_VALUE);
         }
-        // Log.d(Slider.LOGTAG, "Stop fill");
     }
 
     void doMix() {
-        android.os.Process.setThreadPriority(android.os.Process.THREAD_PRIORITY_URGENT_AUDIO);
         while (!stop) {
             long t = System.currentTimeMillis();
-            fillBuffer(buffer);
+            int n = cb.getFreeSpace();
+            fillBuffer(mixBuffer, n);
+            cb.write(mixBuffer, 0, n);
             Log.d(SliderSynth.LOGTAG, String.format("fill %d", (System.currentTimeMillis() - t)));
-            t = System.currentTimeMillis();
-            int n = track.write(buffer, 0, bufferSize);
+        }
+    }
+
+    void writeMix() {
+        while (!stop) {
+            long t = System.currentTimeMillis();
+            int n = cb.getAvailableData();
+            cb.read(writeBuffer, 0, n);
+            track.write(writeBuffer, 0, n);
             Log.d(SliderSynth.LOGTAG, String.format("write %d", (System.currentTimeMillis() - t)));
         }
     }
@@ -141,32 +151,51 @@ public class AddAndClipMixer implements Mixer {
         track.play();
         Log.i(SliderSynth.LOGTAG, "Minimum buffer size: " + minSize);
         Log.i(SliderSynth.LOGTAG, "Buffer size: " + bufferSize);
-        buffer = new short[bufferSize];
+        writeBuffer = new short[bufferSize];
+        mixBuffer = new short[bufferSize];
         finalBuffer = new float[bufferSize];
         tmpBuffer = new float[bufferSize];
         keyboardBuffer = new float[bufferSize];
+        cb = new CircularBuffer(bufferSize * 4);
         stop = false;
-        thread = new Thread(new Runnable() {
+        threadMix = new Thread(new Runnable() {
             public void run() {
                 doMix();
             }
         });
-        thread.setPriority(Thread.MAX_PRIORITY);
-        thread.start();
+        threadMix.setPriority(Thread.MAX_PRIORITY);
+        threadMix.start();
+        threadWrite = new Thread(new Runnable() {
+            public void run() {
+                writeMix();
+            }
+        });
+        threadWrite.setPriority(Thread.MAX_PRIORITY);
+        threadWrite.start();
     }
 
     @Override
     public void stop() {
-        if (thread != null) {
+        if (threadMix != null) {
             stop = true;
             try {
-                thread.join();
+                threadMix.join();
+            } catch (Exception ex) {
+            }
+        }
+        if (threadWrite != null) {
+            stop = true;
+            try {
+                threadWrite.join();
             } catch (Exception ex) {
             }
         }
         keyboards.clear();
         keyboards = null;
-        buffer = null;
+        writeBuffer = null;
+        mixBuffer = null;
+        cb.clear();
+        cb = null;
         if (track != null) {
             track.stop();
         }

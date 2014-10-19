@@ -1,12 +1,12 @@
 apply plugin: 'android'
 android {
-    compileSdkVersion 19
-    buildToolsVersion '20'
+    compileSdkVersion 21
+    buildToolsVersion '21'
     defaultConfig {
         minSdkVersion 8
         //do not set above 10 otherwise menu soft button does not appear
         targetSdkVersion 10
-        versionCode 20
+        versionCode 21
         versionName "2.0.0"
     }
 
@@ -26,5 +26,5 @@ android {
     }
 }
 dependencies {
-    compile 'com.android.support:appcompat-v7:19.+'
+    compile 'com.android.support:appcompat-v7:21.+'
 }

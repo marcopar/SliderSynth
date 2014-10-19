@@ -52,8 +52,8 @@ public class SoundGenerator {
         return timestamp;
     }
 
-    public void getValues(float[] values) {
-        for (int i = 0; i < values.length; i++) {
+    public void getValues(float[] values, int n) {
+        for (int i = 0; i < n; i++) {
             long cs = oscillator.getCurrentSample();
             if (cs == 0) {
                 oscillator.setFrequency(targetFrequency);
