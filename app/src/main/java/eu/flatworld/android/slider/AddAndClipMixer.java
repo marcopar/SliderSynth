@@ -112,20 +112,21 @@ public class AddAndClipMixer implements Mixer {
     void doMix() {
         while (!stop) {
             long t = System.currentTimeMillis();
-            int n = cb.getFreeSpace();
+            int n = Math.min(cb.getFreeSpace(), mixBuffer.length);
             fillBuffer(mixBuffer, n);
             cb.write(mixBuffer, 0, n);
-            Log.d(SliderSynth.LOGTAG, String.format("fill %d", (System.currentTimeMillis() - t)));
+            sleep(10);
+            //Log.d(SliderSynth.LOGTAG, String.format("fill %d %d %d", n, cb.getFreeSpace(), (System.currentTimeMillis() - t)));
         }
     }
 
     void writeMix() {
         while (!stop) {
             long t = System.currentTimeMillis();
-            int n = cb.getAvailableData();
+            int n = Math.min(cb.getAvailableData(), writeBuffer.length);
             cb.read(writeBuffer, 0, n);
             track.write(writeBuffer, 0, n);
-            Log.d(SliderSynth.LOGTAG, String.format("write %d", (System.currentTimeMillis() - t)));
+            //Log.d(SliderSynth.LOGTAG, String.format("write %d %d %d", cb.getAvailableData(), n, (System.currentTimeMillis() - t)));
         }
     }
 

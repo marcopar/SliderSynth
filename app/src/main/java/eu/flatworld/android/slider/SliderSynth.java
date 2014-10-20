@@ -34,9 +34,9 @@ public class SliderSynth extends Activity {
     public SliderSynth() {
         Arrays.fill(lastTx, Integer.MAX_VALUE);
         Arrays.fill(lastTy, Integer.MAX_VALUE);
-        String version;
+        String version = "-";
         try {
-            version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+            //version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
         } catch (Exception ex) {
             version = "-";
             Log.e(LOGTAG, "Error getting version", ex);

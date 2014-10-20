@@ -2,6 +2,8 @@ package eu.flatworld.android.slider;
 
 //an extremely inefficient implementation with no checks
 
+//BROKEN
+
 public class CircularBuffer {
     private final short[] buffer;
     private int writePosition, readPosition;
@@ -14,19 +16,19 @@ public class CircularBuffer {
     public synchronized int getFreeSpace() {
         int n = 0;
         if (writePosition > readPosition) {
-            n += writePosition - readPosition;
+            n += buffer.length - writePosition + readPosition;
         } else {
-            n += buffer.length - readPosition + writePosition;
+            n += readPosition - writePosition;
         }
         return n;
     }
 
     public synchronized int getAvailableData() {
         int n = 0;
-        if (readPosition > writePosition) {
-            n += readPosition - writePosition;
+        if (writePosition > readPosition) {
+            n += writePosition - readPosition;
         } else {
-            n += buffer.length - writePosition + readPosition;
+            n += buffer.length - readPosition + writePosition;
         }
         return n;
     }

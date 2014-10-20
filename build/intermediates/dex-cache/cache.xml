@@ -2,20 +2,32 @@
 <pre-dex-items>
 
     <item
-        dex="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/pre-dexed/release/internal_impl-21.0.0-8ea35932cf07873a8f7b272eda307a749a0161f0.jar"
-        jar="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/libs/internal_impl-21.0.0.jar"
-        jumboMode="false" revision="21.0.0" sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0" />
-    <item
-        dex="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/pre-dexed/release/support-annotations-21.0.0-2f3c0ffbaa95601d865e0042d6f9f2cee779dfc8.jar"
-        jar="/home/marcopar/programmi/android-studio/sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0/support-annotations-21.0.0.jar"
-        jumboMode="false" revision="21.0.0" sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e" />
-    <item
         dex="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/pre-dexed/release/classes-51abf422c18560d40a7688ce7cac86ac6172b2f9.jar"
         jar="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/classes.jar"
         jumboMode="false" revision="21.0.0" sha1="95fd37732ec852e99f07eeb516a3650172f1d136" />
     <item
+        dex="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/pre-dexed/debug/classes-51abf422c18560d40a7688ce7cac86ac6172b2f9.jar"
+        jar="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/21.0.0/classes.jar"
+        jumboMode="false" revision="21.0.1" sha1="95fd37732ec852e99f07eeb516a3650172f1d136" />
+    <item
+        dex="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/pre-dexed/release/support-annotations-21.0.0-622853bfd28231970ee65f0c568abadfc0b05ee5.jar"
+        jar="/home/marcopar/programmi/android-sdk/extras/android/m2repository/com/android/support/support-annotations/21.0.0/support-annotations-21.0.0.jar"
+        jumboMode="false" revision="21.0.1" sha1="1a578b9607b36266c63d43a4fa0ab5664dbe911e" />
+    <item
+        dex="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/pre-dexed/release/internal_impl-21.0.0-8ea35932cf07873a8f7b272eda307a749a0161f0.jar"
+        jar="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/libs/internal_impl-21.0.0.jar"
+        jumboMode="false" revision="21.0.0" sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0" />
+    <item
+        dex="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/pre-dexed/debug/internal_impl-21.0.0-8ea35932cf07873a8f7b272eda307a749a0161f0.jar"
+        jar="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/libs/internal_impl-21.0.0.jar"
+        jumboMode="false" revision="21.0.1" sha1="1609e6d42d0480b0f4188e2c29f75388fa12a8f0" />
+    <item
         dex="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/pre-dexed/release/classes-3f7f35cc9e6252338458f7dfa9b3e27ef6b6f678.jar"
         jar="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/classes.jar"
         jumboMode="false" revision="21.0.0" sha1="686344a780033e4ba22b926cd225f8d4941247e6" />
+    <item
+        dex="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/pre-dexed/debug/classes-3f7f35cc9e6252338458f7dfa9b3e27ef6b6f678.jar"
+        jar="/home/marcopar/AndroidStudioProjects/SliderSynth/app/build/intermediates/exploded-aar/com.android.support/support-v4/21.0.0/classes.jar"
+        jumboMode="false" revision="21.0.1" sha1="686344a780033e4ba22b926cd225f8d4941247e6" />
 
 </pre-dex-items>
