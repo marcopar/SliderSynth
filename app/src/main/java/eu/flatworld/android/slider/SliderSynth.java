@@ -36,7 +36,7 @@ public class SliderSynth extends Activity {
         Arrays.fill(lastTy, Integer.MAX_VALUE);
         String version = "-";
         try {
-            //version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+            version = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
         } catch (Exception ex) {
             version = "-";
             Log.e(LOGTAG, "Error getting version", ex);
@@ -87,8 +87,7 @@ public class SliderSynth extends Activity {
             float echodecay = pref.getInt("echodecay" + (i + 1), 20) / 100f;
             KeyboardView kbd = new KeyboardView(this, "kbd" + i,
                     firstOctave, octavesPerKeyboard, maxvol, keyboardColor[i], showSemitonesLines, showSemitonesNames);
-            //EchoFilter ef = new EchoFilter(sampleRate * echodelay / 1000, echodecay);
-            EchoFilter ef = new EchoFilter(sampleRate, 0.5f);
+            EchoFilter ef = new EchoFilter(sampleRate * echodelay / 1000, echodecay);
             kbd.setFilter(ef);
             for (int j = 0; j < MAX_CHANNELS; j++) {
                 SoundGenerator sg = new SoundGenerator(sampleRate);

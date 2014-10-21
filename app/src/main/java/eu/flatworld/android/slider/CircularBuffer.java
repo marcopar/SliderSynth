@@ -1,9 +1,5 @@
 package eu.flatworld.android.slider;
 
-//an extremely inefficient implementation with no checks
-
-//BROKEN
-
 public class CircularBuffer {
     private final short[] buffer;
     private int writePosition, readPosition;
@@ -11,60 +7,57 @@ public class CircularBuffer {
 
     public CircularBuffer(int size) {
         buffer = new short[size];
+        available = 0;
     }
 
     public synchronized int getFreeSpace() {
-        int n = 0;
-        if (writePosition > readPosition) {
-            n += buffer.length - writePosition + readPosition;
-        } else {
-            n += readPosition - writePosition;
-        }
-        return n;
+        return buffer.length - available;
     }
 
     public synchronized int getAvailableData() {
-        int n = 0;
-        if (writePosition > readPosition) {
-            n += writePosition - readPosition;
-        } else {
-            n += buffer.length - readPosition + writePosition;
-        }
-        return n;
+        return available;
     }
 
-    public synchronized void write(short[] data, int offset, int count) {
+    public synchronized int write(short[] data, int offset, int count) {
+        int mw = Math.min(count, getFreeSpace());
+        if (mw == 0) {
+            return 0;
+        }
         if (writePosition >= readPosition) {
-            int n = Math.min(count, buffer.length - writePosition);
+            int n = Math.min(mw, buffer.length - writePosition);
             System.arraycopy(data, offset, buffer, writePosition, n);
-            writePosition += n;
-            if (n < count) {
-                int n2 = Math.min(count - n, readPosition);
+            if (n < mw) {
+                int n2 = Math.min(mw - n, readPosition);
                 System.arraycopy(data, offset + n, buffer, 0, n2);
-                writePosition = n2;
             }
         } else {
-            int n = Math.min(count, readPosition - writePosition);
+            int n = Math.min(mw, readPosition - writePosition);
             System.arraycopy(data, offset, buffer, writePosition, n);
-            writePosition += n;
         }
+        writePosition = (writePosition + mw) % buffer.length;
+        available += mw;
+        return mw;
     }
 
-    public synchronized void read(short[] data, int offset, int count) {
+    public synchronized int read(short[] data, int offset, int count) {
+        int mr = Math.min(count, getAvailableData());
+        if (mr == 0) {
+            return 0;
+        }
         if (readPosition >= writePosition) {
-            int n = Math.min(count, buffer.length - readPosition);
+            int n = Math.min(mr, buffer.length - readPosition);
             System.arraycopy(buffer, readPosition, data, offset, n);
-            readPosition += n;
-            if (n < count) {
-                int n2 = Math.min(count - n, writePosition);
+            if (n < mr) {
+                int n2 = Math.min(mr - n, writePosition);
                 System.arraycopy(buffer, 0, data, offset + n, n2);
-                writePosition = n2;
             }
         } else {
-            int n = Math.min(count, writePosition - readPosition);
+            int n = Math.min(mr, writePosition - readPosition);
             System.arraycopy(buffer, readPosition, data, offset, n);
-            readPosition += n;
         }
+        readPosition = (readPosition + mr) % buffer.length;
+        available -= mr;
+        return mr;
     }
 
     public synchronized void clear() {

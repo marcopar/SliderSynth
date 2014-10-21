@@ -157,7 +157,7 @@ public class AddAndClipMixer implements Mixer {
         finalBuffer = new float[bufferSize];
         tmpBuffer = new float[bufferSize];
         keyboardBuffer = new float[bufferSize];
-        cb = new CircularBuffer(bufferSize * 4);
+        cb = new CircularBuffer(bufferSize);
         stop = false;
         threadMix = new Thread(new Runnable() {
             public void run() {
@@ -171,7 +171,6 @@ public class AddAndClipMixer implements Mixer {
                 writeMix();
             }
         });
-        threadWrite.setPriority(Thread.MAX_PRIORITY);
         threadWrite.start();
     }
 
