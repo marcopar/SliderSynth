@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by marcopar on 22/07/14.
  */
-public class KeyboardView extends View {
+public class KeyboardView extends View implements View.OnTouchListener {
     String name;
 
     List<SoundGenerator> soundGenerators;
@@ -48,6 +48,7 @@ public class KeyboardView extends View {
         paintText.setTextSize(20);
         paintSemitone.setColor(0xFFF0F0F0);
         paintSemitone.setStrokeWidth(2);
+        setOnTouchListener(this);
     }
 
     @Override
@@ -68,7 +69,7 @@ public class KeyboardView extends View {
     }
 
     @Override
-    public boolean onTouchEvent(MotionEvent event) {
+    public boolean onTouch(View v, MotionEvent event) {
         int pointerIndex = event.getActionIndex();
         int pointerId = event.getPointerId(pointerIndex);
         int maskedAction = event.getActionMasked();
@@ -95,6 +96,7 @@ public class KeyboardView extends View {
         }
         return true;
     }
+
 
     public String getName() {
         return name;
@@ -135,7 +137,7 @@ public class KeyboardView extends View {
     }
 
     public void touchDown(int pointer, float px, float py) {
-        Log.d(SliderSynth.LOGTAG, "T DOWN");
+        Log.d(SliderSynth.LOGTAG, name + " T DOWN " + pointer);
         int w = getWidth();
         int h = getHeight();
         SoundGenerator sg = getNextSoundGenerator();
@@ -148,7 +150,7 @@ public class KeyboardView extends View {
     }
 
     public void touchUp(int pointer, float px, float py) {
-        Log.d(SliderSynth.LOGTAG, "T UP");
+        Log.d(SliderSynth.LOGTAG, name + " T UP " + pointer);
         SoundGenerator sg = pointerToSoundGenerator.get(pointer);
         sg.getEnvelope().noteOff();
     }
