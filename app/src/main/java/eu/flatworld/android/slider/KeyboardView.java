@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by marcopar on 22/07/14.
  */
-public class KeyboardView extends View implements View.OnTouchListener {
+public class KeyboardView extends View {
     String name;
 
     List<SoundGenerator> soundGenerators;
@@ -48,7 +48,6 @@ public class KeyboardView extends View implements View.OnTouchListener {
         paintText.setTextSize(20);
         paintSemitone.setColor(0xFFF0F0F0);
         paintSemitone.setStrokeWidth(2);
-        setOnTouchListener(this);
     }
 
     @Override
@@ -69,7 +68,7 @@ public class KeyboardView extends View implements View.OnTouchListener {
     }
 
     @Override
-    public boolean onTouch(View v, MotionEvent event) {
+    public boolean onTouchEvent(MotionEvent event) {
         int pointerIndex = event.getActionIndex();
         int pointerId = event.getPointerId(pointerIndex);
         int maskedAction = event.getActionMasked();
