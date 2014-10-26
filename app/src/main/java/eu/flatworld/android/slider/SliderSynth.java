@@ -1,15 +1,12 @@
 package eu.flatworld.android.slider;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
@@ -34,7 +31,6 @@ public class SliderSynth extends Activity {
     public SliderSynth() {
         Arrays.fill(lastTx, Integer.MAX_VALUE);
         Arrays.fill(lastTy, Integer.MAX_VALUE);
-
     }
 
     void init() {
@@ -70,6 +66,7 @@ public class SliderSynth extends Activity {
         mixer.setBufferSize(byteBufferSize);
         ViewGroup parent = (ViewGroup) findViewById(R.id.contentLayout);
         parent.removeAllViews();
+        //parent.requestDisallowInterceptTouchEvent(true);
         for (int i = 0; i < numberOfKeyboards; i++) {
             int firstOctave = Integer.valueOf(pref.getString("firstoctave" + (i + 1), "4"));
             int octavesPerKeyboard = Integer.valueOf(pref.getString("octavesperkeyboard" + (i + 1), "2"));
@@ -78,7 +75,7 @@ public class SliderSynth extends Activity {
             float maxvol = pref.getInt("maxvol" + (i + 1), 20) / 100f;
             int echodelay = pref.getInt("echodelay" + (i + 1), 500);
             float echodecay = pref.getInt("echodecay" + (i + 1), 20) / 100f;
-            KeyboardView kbd = new KeyboardView(this, "kbd" + i,
+            KeyboardView kbd = new KeyboardView(getApplicationContext(), "kbd" + i,
                     firstOctave, octavesPerKeyboard, maxvol, keyboardColor[i], showSemitonesLines, showSemitonesNames);
             EchoFilter ef = new EchoFilter(sampleRate * echodelay / 1000, echodecay);
             kbd.setFilter(ef);
@@ -109,15 +106,17 @@ public class SliderSynth extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
         keyboardColor = new Drawable[]{getResources().getDrawable(R.drawable.keyboard_red),
                 getResources().getDrawable(R.drawable.keyboard_green),
                 getResources().getDrawable(R.drawable.keyboard_blue),
                 getResources().getDrawable(R.drawable.keyboard_yellow)};
+
     }
 
     @Override
@@ -131,7 +130,7 @@ public class SliderSynth extends Activity {
         super.onPause();
         deinit();
     }
-
+/*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -150,6 +149,11 @@ public class SliderSynth extends Activity {
             this.startActivity(i);
             return true;
         }
+        if (id == R.id.action_about) {
+            Intent i = new Intent(this, AboutActivity.class);
+            this.startActivity(i);
+            return true;
+        }
         return super.onOptionsItemSelected(item);
-    }
+    }*/
 }

@@ -1,11 +1,10 @@
 apply plugin: 'android'
 android {
     compileSdkVersion 21
-    buildToolsVersion '21.0.1'
+    buildToolsVersion '21.0.2'
     defaultConfig {
-        minSdkVersion 8
-        //do not set above 10 otherwise menu soft button does not appear
-        targetSdkVersion 10
+        minSdkVersion 11
+        targetSdkVersion 21
         versionCode 21
         versionName "2.1.0"
     }

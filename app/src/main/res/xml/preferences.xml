@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="General" >
-        <ListPreference
+    <PreferenceCategory android:title="General">
+    <ListPreference
             android:defaultValue="44100"
             android:entries="@array/samplerate"
             android:entryValues="@array/samplerate"
@@ -29,8 +29,8 @@
     </PreferenceCategory>
     <PreferenceCategory
         android:key="keyboard1"
-        android:title="@string/preferences_redkeyboard" >
-        <ListPreference
+        android:title="@string/preferences_redkeyboard">
+    <ListPreference
             android:defaultValue="@string/waveform_sine_value"
             android:entries="@array/waveforms"
             android:entryValues="@array/waveforms_values"
@@ -85,8 +85,8 @@
     </PreferenceCategory>
     <PreferenceCategory
         android:key="keyboard2"
-        android:title="@string/preferences_greenkeyboard" >
-        <ListPreference
+        android:title="@string/preferences_greenkeyboard">
+    <ListPreference
             android:defaultValue="@string/waveform_sine_value"
             android:entries="@array/waveforms"
             android:entryValues="@array/waveforms_values"
@@ -140,8 +140,8 @@
     </PreferenceCategory>
     <PreferenceCategory
         android:key="keyboard3"
-        android:title="@string/preferences_bluekeyboard" >
-        <ListPreference
+        android:title="@string/preferences_bluekeyboard">
+    <ListPreference
             android:defaultValue="@string/waveform_square_value"
             android:entries="@array/waveforms"
             android:entryValues="@array/waveforms_values"
@@ -195,8 +195,8 @@
     </PreferenceCategory>
     <PreferenceCategory
         android:key="keyboard4"
-        android:title="@string/preferences_yellowkeyboard" >
-        <ListPreference
+        android:title="@string/preferences_yellowkeyboard">
+    <ListPreference
             android:defaultValue="@string/waveform_triangle_value"
             android:entries="@array/waveforms"
             android:entryValues="@array/waveforms_values"
@@ -248,11 +248,11 @@
             android:summary="@string/preferences_maxvolume_summary"
             android:title="@string/preferences_maxvolume_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/preferences_about" >
+    <PreferenceCategory android:title="@string/preferences_about">
         <PreferenceScreen
             android:key="about"
-            android:title="@string/app_name" >
-            <intent
+            android:title="@string/app_name">
+        <intent
                 android:targetClass="eu.flatworld.android.slider.AboutActivity"
                 android:targetPackage="eu.flatworld.android.slider" />
         </PreferenceScreen>

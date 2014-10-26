@@ -4,7 +4,13 @@
     tools:context="eu.flatworld.android.slider.SliderSynth">
     <item
         android:id="@+id/action_settings"
+        android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/action_settings"
         android:orderInCategory="100"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_about"
+        android:title="@string/action_about"
+        android:orderInCategory="101"
         app:showAsAction="never" />
 </menu>

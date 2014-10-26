@@ -121,6 +121,7 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
 
     /**
      * Update a SeekBarPreference view with our current state
+     *
      * @param view
      */
     protected void updateView(View view) {

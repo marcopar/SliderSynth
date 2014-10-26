@@ -55,4 +55,5 @@
     <string name="echo_delay_summary"></string>
     <string name="echo_decay">Echo decay</string>
     <string name="echo_decay_summary">Echo decay per delay. 100=No decay, 0=total decay.</string>
+    <string name="action_about">About</string>
 </resources>

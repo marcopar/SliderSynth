@@ -1,43 +1,46 @@
 package eu.flatworld.android.slider;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
+import android.widget.Button;
 
-public class MenuActivity extends ListActivity {
-    String[] values;
-
+public class MenuActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
-        super.onCreate(savedInstanceState);
+        setContentView(R.layout.menu);
 
-        values = this.getResources().getStringArray(R.array.menu);
+        Button b = (Button) findViewById(R.id.bSettings);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MenuActivity.this, SettingsActivity.class);
+                MenuActivity.this.startActivity(i);
+            }
+        });
+        b = (Button) findViewById(R.id.bPlay);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MenuActivity.this, SliderSynth.class);
+                MenuActivity.this.startActivity(i);
+            }
+        });
+        b = (Button) findViewById(R.id.bAbout);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MenuActivity.this, AboutActivity.class);
+                MenuActivity.this.startActivity(i);
+            }
+        });
 
-        ArrayAdapter<String> aa = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, values);
-        setListAdapter(aa);
     }
-
-    @Override
-    protected void onListItemClick(ListView l, View v, int position, long id) {
-        // TODO Auto-generated method stub
-        super.onListItemClick(l, v, position, id);
-        if (values[position].equals(this.getResources().getString(R.string.mainmenu_settings))) {
-            Intent i = new Intent(this, SettingsActivity.class);
-            this.startActivity(i);
-        }
-        if (values[position].equals(this.getResources().getString(R.string.mainmenu_about))) {
-            Intent i = new Intent(this, AboutActivity.class);
-            this.startActivity(i);
-        }
-    }
-
-
 }

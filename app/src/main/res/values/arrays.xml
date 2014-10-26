@@ -14,7 +14,7 @@
         <item>@string/waveform_triangle_value</item>
         <item>@string/waveform_sawtooth_value</item>
         <item>@string/waveform_reversesawtooth_value</item>
-    </string-array>    
+    </string-array>
     <string-array name="samplerate">
         <item>44100</item>
         <item>22050</item>
@@ -44,8 +44,4 @@
         <item>8</item>
         <item>9</item>
     </string-array>
-	<string-array name="menu">
-	    <item>@string/mainmenu_settings</item>
-	    <item>@string/mainmenu_about</item>
-	</string-array>
 </resources>

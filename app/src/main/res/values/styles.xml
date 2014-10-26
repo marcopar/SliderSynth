@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyTheme" parent="android:Theme.Holo"></style>
+
+    <style name="MyThemeCompat" parent="@style/Theme.AppCompat"></style>
+
+</resources>
