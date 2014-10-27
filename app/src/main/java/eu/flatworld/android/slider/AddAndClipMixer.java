@@ -115,7 +115,7 @@ public class AddAndClipMixer implements Mixer {
             int n = Math.min(cb.getFreeSpace(), mixBuffer.length);
             fillBuffer(mixBuffer, n);
             cb.write(mixBuffer, 0, n);
-            sleep(10);
+            Thread.yield();
             //Log.d(SliderSynth.LOGTAG, String.format("fill %d %d %d", n, cb.getFreeSpace(), (System.currentTimeMillis() - t)));
         }
     }

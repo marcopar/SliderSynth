@@ -268,14 +268,4 @@
             android:summary="@string/preferences_maxvolume_summary"
             android:title="@string/preferences_maxvolume_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/preferences_about">
-        <PreferenceScreen
-            android:key="about"
-            android:title="@string/app_name">
-            <intent
-                android:targetClass="eu.flatworld.android.slider.AboutActivity"
-                android:targetPackage="eu.flatworld.android.slider" />
-        </PreferenceScreen>
-    </PreferenceCategory>
-
 </PreferenceScreen>

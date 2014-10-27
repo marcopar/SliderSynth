@@ -9,7 +9,7 @@
             android:key="samplerate"
             android:summary="@string/preferences_samplerate_summary"
             android:title="@string/preferences_samplerate_title" />
-        <ListPreference
+        <zListPreference
             android:defaultValue="2"
             android:entries="@array/numberofkeyboards"
             android:entryValues="@array/numberofkeyboards"
@@ -268,14 +268,4 @@
             android:summary="@string/preferences_maxvolume_summary"
             android:title="@string/preferences_maxvolume_title" />
     </PreferenceCategory>
-    <PreferenceCategory android:title="@string/preferences_about">
-        <PreferenceScreen
-            android:key="about"
-            android:title="@string/app_name">
-        <intent
-                android:targetClass="eu.flatworld.android.slider.AboutActivity"
-                android:targetPackage="eu.flatworld.android.slider" />
-        </PreferenceScreen>
-    </PreferenceCategory>
-
 </PreferenceScreen>
