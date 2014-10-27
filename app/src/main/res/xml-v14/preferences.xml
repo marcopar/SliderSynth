@@ -64,6 +64,11 @@
             android:max="5000"
             android:summary="@string/preferences_release_summary"
             android:title="@string/preferences_release_title" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="echoenabled1"
+            android:summary="@string/enable_echo_effect"
+            android:title="@string/echo" />
         <eu.flatworld.android.slider.SeekBarPreference
             android:defaultValue="500"
             android:key="echodelay1"
@@ -119,6 +124,11 @@
             android:max="5000"
             android:summary="@string/preferences_release_summary"
             android:title="@string/preferences_release_title" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="echoenabled2"
+            android:summary="@string/enable_echo_effect"
+            android:title="@string/echo" />
         <eu.flatworld.android.slider.SeekBarPreference
             android:defaultValue="500"
             android:key="echodelay2"
@@ -174,6 +184,11 @@
             android:max="5000"
             android:summary="@string/preferences_release_summary"
             android:title="@string/preferences_release_title" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="echoenabled3"
+            android:summary="@string/enable_echo_effect"
+            android:title="@string/echo" />
         <eu.flatworld.android.slider.SeekBarPreference
             android:defaultValue="500"
             android:key="echodelay3"
@@ -229,6 +244,11 @@
             android:max="5000"
             android:summary="@string/preferences_release_summary"
             android:title="@string/preferences_release_title" />
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="echoenabled4"
+            android:summary="@string/enable_echo_effect"
+            android:title="@string/echo" />
         <eu.flatworld.android.slider.SeekBarPreference
             android:defaultValue="500"
             android:key="echodelay4"

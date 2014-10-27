@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"
-        android:layout_margin="16dp"
+        android:layout_margin="75dp"
         android:layout_weight="1"
         android:maxHeight="512dp"
         android:maxWidth="512dp"
@@ -31,8 +31,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_margin="16dp"
         android:text="@string/aboutCredits"
-        android:textAppearance="?android:attr/textAppearanceSmall" />
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_marginBottom="50dp" />
 
 </LinearLayout>

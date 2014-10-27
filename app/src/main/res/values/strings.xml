@@ -19,19 +19,19 @@
 	    \nrobobunny.com</string>
     <string name="preferences_about">About</string>
     <string name="preferences_general">General</string>
-    <string name="preferences_redkeyboard">Red keyboard</string>
-    <string name="preferences_greenkeyboard">Green keyboard</string>
-    <string name="preferences_bluekeyboard">Blue keyboard</string>
-    <string name="preferences_yellowkeyboard">Yellow keyboard</string>
+    <string name="preferences_redkeyboard">Red board</string>
+    <string name="preferences_greenkeyboard">Green board</string>
+    <string name="preferences_bluekeyboard">Blue board</string>
+    <string name="preferences_yellowkeyboard">Yellow board</string>
     <string name="preferences_samplerate_summary">Lower sample rates put less strain on the cpu but they don\'t allow to play higher frequancies that will result silent</string>
     <string name="preferences_samplerate_title">Sample rate (Hz)</string>
-    <string name="preferences_numberofkeyboards_summary">Number of keyboards visible on the screen:</string>
-    <string name="preferences_numberofkeyboards_title">Number of keyboards</string>
+    <string name="preferences_numberofkeyboards_summary">Number of boards visible on the screen:</string>
+    <string name="preferences_numberofkeyboards_title">Number of boards</string>
     <string name="preferences_waveform_title">Waveform</string>
     <string name="preferences_octaves_title">Octaves</string>
-    <string name="preferences_octaves_summary">Number of octaves on the keyboard:</string>
+    <string name="preferences_octaves_summary">Number of octaves on the board:</string>
     <string name="preferences_firstoctave_title">First octave</string>
-    <string name="preferences_firstoctave_summary">First octave on the keyboard:</string>
+    <string name="preferences_firstoctave_summary">First octave on the board:</string>
     <string name="preferences_attack_title">Attack</string>
     <string name="preferences_attack_summary">Attack duration (ms)</string>
     <string name="preferences_release_title">Release</string>
@@ -47,13 +47,15 @@
     <string name="title_activity_slider_synth">Slider Synth</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
-    <string name="preferences_showsemitoneslines_title">Show semitones lines</string>
+    <string name="preferences_showsemitoneslines_title">Semitones lines</string>
     <string name="preferences_showsemitoneslines_summary">Show lines corresponding to semitones</string>
-    <string name="preferences_showsemitonesnames_title">Show semitones names</string>
-    <string name="preferences_showsemitonesnames_summary">Show the name of the semitones</string>
+    <string name="preferences_showsemitonesnames_title">Semitones names</string>
+    <string name="preferences_showsemitonesnames_summary">Show semitones names</string>
     <string name="echo_delay">Echo delay (ms)</string>
-    <string name="echo_delay_summary"></string>
+    <string name="echo_delay_summary">Delay between the sound and its subsequent echoes</string>
     <string name="echo_decay">Echo decay</string>
-    <string name="echo_decay_summary">Echo decay per delay. 100=No decay, 0=total decay.</string>
+    <string name="echo_decay_summary">Echo decay at every echo. 100=No decay, 0=total decay.</string>
     <string name="action_about">About</string>
+    <string name="enable_echo_effect">Enable echo effect</string>
+    <string name="echo">Echo</string>
 </resources>

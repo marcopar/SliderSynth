@@ -73,12 +73,15 @@ public class SliderSynth extends Activity {
             int attack = pref.getInt("attack" + (i + 1), 50);
             int release = pref.getInt("release" + (i + 1), 250);
             float maxvol = pref.getInt("maxvol" + (i + 1), 20) / 100f;
+            boolean echoenabled = pref.getBoolean("echoenabled" + (i + 1), true);
             int echodelay = pref.getInt("echodelay" + (i + 1), 500);
             float echodecay = pref.getInt("echodecay" + (i + 1), 20) / 100f;
             KeyboardView kbd = new KeyboardView(getApplicationContext(), "kbd" + i,
                     firstOctave, octavesPerKeyboard, maxvol, keyboardColor[i], showSemitonesLines, showSemitonesNames);
-            EchoFilter ef = new EchoFilter(sampleRate * echodelay / 1000, echodecay);
-            kbd.setFilter(ef);
+            if (echoenabled) {
+                EchoFilter ef = new EchoFilter(sampleRate * echodelay / 1000, echodecay);
+                kbd.setFilter(ef);
+            }
             for (int j = 0; j < MAX_CHANNELS; j++) {
                 SoundGenerator sg = new SoundGenerator(sampleRate);
                 sg.getOscillator().setWaveForm(
