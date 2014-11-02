@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
@@ -136,7 +135,6 @@ public class KeyboardView extends View {
     }
 
     public void touchDown(int pointer, float px, float py) {
-        Log.d(SliderSynth.LOGTAG, name + " T DOWN " + pointer);
         int w = getWidth();
         int h = getHeight();
         SoundGenerator sg = getNextSoundGenerator();
@@ -149,7 +147,6 @@ public class KeyboardView extends View {
     }
 
     public void touchUp(int pointer, float px, float py) {
-        Log.d(SliderSynth.LOGTAG, name + " T UP " + pointer);
         SoundGenerator sg = pointerToSoundGenerator.get(pointer);
         sg.getEnvelope().noteOff();
     }

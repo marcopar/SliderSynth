@@ -66,7 +66,6 @@ public class SliderSynth extends Activity {
         mixer.setBufferSize(byteBufferSize);
         ViewGroup parent = (ViewGroup) findViewById(R.id.contentLayout);
         parent.removeAllViews();
-        //parent.requestDisallowInterceptTouchEvent(true);
         for (int i = 0; i < numberOfKeyboards; i++) {
             int firstOctave = Integer.valueOf(pref.getString("firstoctave" + (i + 1), "4"));
             int octavesPerKeyboard = Integer.valueOf(pref.getString("octavesperkeyboard" + (i + 1), "2"));
