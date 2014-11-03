@@ -30,19 +30,22 @@ public class KeyboardView extends View {
     boolean showSemitonesLines = false;
     boolean showSemitonesNames = false;
 
+    Drawable background;
+
     final static String semitonesNames[] = {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
 
     public KeyboardView(Context context, String name, int firstOctave, int numberOfOctaves, float maxvol,
-                        Drawable color, boolean showSemitonesLines, boolean showSemitonesNames) {
+                        Drawable background, boolean showSemitonesLines, boolean showSemitonesNames) {
         super(context);
         this.name = name;
         this.showSemitonesLines = showSemitonesLines;
         this.showSemitonesNames = showSemitonesNames;
+        this.background = background;
         soundGenerators = new ArrayList<SoundGenerator>();
         frequencyManager = new FrequencyManager(firstOctave, numberOfOctaves);
         volumeManager = new VolumeManager(maxvol);
         pointerToSoundGenerator = new HashMap<Integer, SoundGenerator>();
-        setBackgroundDrawable(color);
+        setBackgroundDrawable(background);
         paintText.setColor(0xFFF0F0F0);
         paintText.setTextSize(20);
         paintSemitone.setColor(0xFFF0F0F0);
@@ -143,12 +146,15 @@ public class KeyboardView extends View {
         sg.setTargetFrequency(frequencyManager.getFrequency(px / w));
         sg.setTargetVolume(volumeManager.getVolume(py / h));
         sg.getEnvelope().noteOn();
+        setBackgroundColor(0xFF000000 + (int) Math.round(0xFFFFFF * Math.random()));
         invalidate();
     }
 
     public void touchUp(int pointer, float px, float py) {
         SoundGenerator sg = pointerToSoundGenerator.get(pointer);
         sg.getEnvelope().noteOff();
+        setBackgroundDrawable(background);
+        invalidate();
     }
 
     public void touchDragged(int pointer, float px, float py) {
@@ -171,6 +177,7 @@ public class KeyboardView extends View {
         }
         sg.setTargetFrequency(frequencyManager.getFrequency(fp));
         sg.setTargetVolume(volumeManager.getVolume(fv));
+        setBackgroundColor(0xFF000000 + (int) Math.round(0xFFFFFF * Math.random()));
         invalidate();
     }
 
