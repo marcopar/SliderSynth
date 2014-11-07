@@ -137,6 +137,18 @@ public class KeyboardView extends View {
         return olderSg;
     }
 
+    int getColor(float x, float y, ColorMode colorMode) {
+        switch (colorMode) {
+            case NONE:
+                return -1;
+            case SMOOTH:
+                return 0;
+            case EXTREME:
+                return 0xFF000000 + (int) Math.round(0xFFFFFF * Math.random());
+        }
+        return -1;
+    }
+
     public void touchDown(int pointer, float px, float py) {
         int w = getWidth();
         int h = getHeight();
