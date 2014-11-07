@@ -123,6 +123,7 @@ public class KeyboardView extends View {
         return soundGenerators;
     }
 
+
     SoundGenerator getNextSoundGenerator() {
         long ts = Long.MAX_VALUE;
         SoundGenerator olderSg = null;
@@ -137,14 +138,29 @@ public class KeyboardView extends View {
         return olderSg;
     }
 
-    int getColor(float x, float y, ColorMode colorMode) {
+    int getSmoothColor(int pointer, float x, float y) {
+        int w = getWidth();
+        int h = getHeight();
+        float hsv[] = new float[]{0, 1, 1};
+
+        hsv[0] = x / w * 360;
+        hsv[1] = y / h;
+        hsv[2] = 1;
+        return android.graphics.Color.HSVToColor(hsv);
+    }
+
+    int getExtremeColor(int pointer, float x, float y) {
+        return 0xFF000000 + (int) Math.round(0xFFFFFF * Math.random());
+    }
+
+    int getColor(int pointer, float x, float y, ColorMode colorMode) {
         switch (colorMode) {
             case NONE:
                 return -1;
             case SMOOTH:
-                return 0;
+                return getSmoothColor(pointer, x, y);
             case EXTREME:
-                return 0xFF000000 + (int) Math.round(0xFFFFFF * Math.random());
+                return getExtremeColor(pointer, x, y);
         }
         return -1;
     }
@@ -158,7 +174,9 @@ public class KeyboardView extends View {
         sg.setTargetFrequency(frequencyManager.getFrequency(px / w));
         sg.setTargetVolume(volumeManager.getVolume(py / h));
         sg.getEnvelope().noteOn();
-        setBackgroundColor(0xFF000000 + (int) Math.round(0xFFFFFF * Math.random()));
+        if (pointer == 0) {
+            setBackgroundColor(getColor(pointer, px, py, ColorMode.SMOOTH));
+        }
         invalidate();
     }
 
@@ -189,7 +207,9 @@ public class KeyboardView extends View {
         }
         sg.setTargetFrequency(frequencyManager.getFrequency(fp));
         sg.setTargetVolume(volumeManager.getVolume(fv));
-        setBackgroundColor(0xFF000000 + (int) Math.round(0xFFFFFF * Math.random()));
+        if (pointer == 0) {
+            setBackgroundColor(getColor(pointer, px, py, ColorMode.SMOOTH));
+        }
         invalidate();
     }
 
