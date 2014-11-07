@@ -1,12 +1,12 @@
 apply plugin: 'android'
 android {
     compileSdkVersion 21
-    buildToolsVersion '21.1.0'
+    buildToolsVersion '21.1.1'
     defaultConfig {
         minSdkVersion 8
         targetSdkVersion 21
-        versionCode 21
-        versionName "2.1.0"
+        versionCode 20200
+        versionName "2.2.0"
     }
 
     signingConfigs {
