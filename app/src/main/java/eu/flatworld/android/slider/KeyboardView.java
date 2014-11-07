@@ -174,9 +174,7 @@ public class KeyboardView extends View {
         sg.setTargetFrequency(frequencyManager.getFrequency(px / w));
         sg.setTargetVolume(volumeManager.getVolume(py / h));
         sg.getEnvelope().noteOn();
-        if (pointer == 0) {
-            setBackgroundColor(getColor(pointer, px, py, ColorMode.SMOOTH));
-        }
+        setBackgroundColor(getColor(pointer, px, py, ColorMode.SMOOTH));
         invalidate();
     }
 
@@ -207,9 +205,7 @@ public class KeyboardView extends View {
         }
         sg.setTargetFrequency(frequencyManager.getFrequency(fp));
         sg.setTargetVolume(volumeManager.getVolume(fv));
-        if (pointer == 0) {
-            setBackgroundColor(getColor(pointer, px, py, ColorMode.SMOOTH));
-        }
+        setBackgroundColor(getColor(pointer, px, py, ColorMode.SMOOTH));
         invalidate();
     }
 
