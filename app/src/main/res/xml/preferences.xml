@@ -9,7 +9,7 @@
             android:key="samplerate"
             android:summary="@string/preferences_samplerate_summary"
             android:title="@string/preferences_samplerate_title" />
-        <zListPreference
+        <ListPreference
             android:defaultValue="2"
             android:entries="@array/numberofkeyboards"
             android:entryValues="@array/numberofkeyboards"
