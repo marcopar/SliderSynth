@@ -9,6 +9,7 @@ import android.preference.Preference;
 import android.preference.PreferenceActivity;
 import android.preference.PreferenceCategory;
 import android.preference.PreferenceManager;
+import android.preference.PreferenceScreen;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -22,9 +23,7 @@ public class SettingsActivity extends PreferenceActivity implements
         super.onCreate(savedInstanceState);
 
         addPreferencesFromResource(R.xml.preferences);
-        PreferenceManager.setDefaultValues(getBaseContext(), R.xml.preferences,
-                true);
-
+        PreferenceManager.setDefaultValues(getBaseContext(), R.xml.preferences, true);
         for (int i = 0; i < getPreferenceScreen().getPreferenceCount(); i++) {
             initSummary(getPreferenceScreen().getPreference(i));
         }
@@ -57,22 +56,22 @@ public class SettingsActivity extends PreferenceActivity implements
 
     private void updateKeyboardCategoryStatus() {
         ListPreference lpNok = (ListPreference) findPreference("numberofkeyboards");
-        PreferenceCategory pc = (PreferenceCategory) findPreference("keyboard1");
+        PreferenceScreen pc = (PreferenceScreen) findPreference("keyboard1");
         pc.setEnabled(true);
         int n = Integer.parseInt(lpNok.getValue());
-        pc = (PreferenceCategory) findPreference("keyboard2");
+        pc = (PreferenceScreen) findPreference("keyboard2");
         if (n >= 2) {
             pc.setEnabled(true);
         } else {
             pc.setEnabled(false);
         }
-        pc = (PreferenceCategory) findPreference("keyboard3");
+        pc = (PreferenceScreen) findPreference("keyboard3");
         if (n >= 3) {
             pc.setEnabled(true);
         } else {
             pc.setEnabled(false);
         }
-        pc = (PreferenceCategory) findPreference("keyboard4");
+        pc = (PreferenceScreen) findPreference("keyboard4");
         if (n >= 4) {
             pc.setEnabled(true);
         } else {
@@ -83,6 +82,11 @@ public class SettingsActivity extends PreferenceActivity implements
     private void initSummary(Preference p) {
         if (p instanceof PreferenceCategory) {
             PreferenceCategory pCat = (PreferenceCategory) p;
+            for (int i = 0; i < pCat.getPreferenceCount(); i++) {
+                initSummary(pCat.getPreference(i));
+            }
+        } else if (p instanceof PreferenceScreen) {
+            PreferenceScreen pCat = (PreferenceScreen) p;
             for (int i = 0; i < pCat.getPreferenceCount(); i++) {
                 initSummary(pCat.getPreference(i));
             }
