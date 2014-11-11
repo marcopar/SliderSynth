@@ -58,4 +58,5 @@
     <string name="action_about">About</string>
     <string name="enable_echo_effect">Enable echo effect</string>
     <string name="echo">Echo</string>
+    <string name="general">General</string>
 </resources>

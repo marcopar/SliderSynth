@@ -23,30 +23,33 @@
             android:layout_marginBottom="10dp" />
 
         <Button
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
         android:text="Play"
         android:id="@+id/bPlay"
             android:layout_below="@+id/ivLogo"
         android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_background1" />
 
         <Button
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
         android:text="Settings"
         android:id="@+id/bSettings"
         android:layout_below="@+id/bPlay"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp" />
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_background2" />
 
         <Button
-            android:layout_width="200dp"
-            android:layout_height="50dp"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
         android:text="About"
         android:id="@+id/bAbout"
         android:layout_below="@+id/bSettings"
-            android:layout_centerHorizontal="true" />
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_background3" />
 
     </RelativeLayout>
 </RelativeLayout>

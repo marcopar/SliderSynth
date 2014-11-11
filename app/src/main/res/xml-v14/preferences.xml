@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <PreferenceCategory android:title="General">
+    <PreferenceCategory android:title="@string/general">
         <ListPreference
             android:defaultValue="44100"
             android:entries="@array/samplerate"
@@ -30,6 +30,7 @@
             android:key="keyboard1"
             android:title="@string/preferences_redkeyboard"
             android:persistent="true">
+            <PreferenceCategory android:title="@string/preferences_redkeyboard">
             <ListPreference
                 android:defaultValue="@string/waveform_sine_value"
                 android:entries="@array/waveforms"
@@ -87,10 +88,12 @@
                 android:max="100"
                 android:summary="@string/preferences_maxvolume_summary"
                 android:title="@string/preferences_maxvolume_title" />
+            </PreferenceCategory>
         </PreferenceScreen>
         <PreferenceScreen
             android:key="keyboard2"
             android:title="@string/preferences_greenkeyboard">
+            <PreferenceCategory android:title="@string/preferences_greenkeyboard">
             <ListPreference
                 android:defaultValue="@string/waveform_sine_value"
                 android:entries="@array/waveforms"
@@ -147,10 +150,12 @@
                 android:max="100"
                 android:summary="@string/preferences_maxvolume_summary"
                 android:title="@string/preferences_maxvolume_title" />
+            </PreferenceCategory>
         </PreferenceScreen>
         <PreferenceScreen
             android:key="keyboard3"
             android:title="@string/preferences_bluekeyboard">
+            <PreferenceCategory android:title="@string/preferences_bluekeyboard">
             <ListPreference
                 android:defaultValue="@string/waveform_square_value"
                 android:entries="@array/waveforms"
@@ -207,10 +212,12 @@
                 android:max="100"
                 android:summary="@string/preferences_maxvolume_summary"
                 android:title="@string/preferences_maxvolume_title" />
+            </PreferenceCategory>
         </PreferenceScreen>
         <PreferenceScreen
             android:key="keyboard4"
             android:title="@string/preferences_yellowkeyboard">
+            <PreferenceCategory android:title="@string/preferences_yellowkeyboard">
             <ListPreference
                 android:defaultValue="@string/waveform_triangle_value"
                 android:entries="@array/waveforms"
@@ -267,8 +274,7 @@
                 android:max="100"
                 android:summary="@string/preferences_maxvolume_summary"
                 android:title="@string/preferences_maxvolume_title" />
+            </PreferenceCategory>
         </PreferenceScreen>
     </PreferenceCategory>
-
-
 </PreferenceScreen>
