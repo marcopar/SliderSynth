@@ -4,6 +4,11 @@ android {
     buildToolsVersion '21.1.1'
     defaultConfig {
         minSdkVersion 8
+        //setting this above 10 makes the menu overflow button disappear
+        //setting this below 11, if multiple views are on screen they can't receive multiple separated events (honeycomb split touch events)
+        //this was not an issue in version 1.x where we were using an opengl screen but now we have plain good old views
+        //so we need to get rid of the overflow button and create a menu interface if we want the much more important split events
+        //we are now free to target the top
         targetSdkVersion 21
         versionCode 20200
         versionName "2.2.0"
