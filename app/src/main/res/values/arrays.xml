@@ -44,4 +44,14 @@
         <item>8</item>
         <item>9</item>
     </string-array>
+    <string-array name="coloreffects">
+        <item>@string/color_effect_none</item>
+        <item>@string/color_effect_soft_rainbow</item>
+        <item>@string/color_effect_hard_rainbow</item>
+    </string-array>
+    <string-array name="coloreffects_values">
+        <item>@string/color_effect_none_value</item>
+        <item>@string/color_effect_soft_rainbow_value</item>
+        <item>@string/color_effect_hard_rainbow_value</item>
+    </string-array>
 </resources>

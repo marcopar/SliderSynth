@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
     <PreferenceCategory android:title="@string/general">
         <ListPreference
             android:defaultValue="44100"
@@ -26,6 +25,13 @@
             android:key="showsemitonesnames"
             android:summary="@string/preferences_showsemitonesnames_summary"
             android:title="@string/preferences_showsemitonesnames_title" />
+        <ListPreference
+            android:defaultValue="NONE"
+            android:entries="@array/coloreffects"
+            android:entryValues="@array/coloreffects_values"
+            android:key="coloreffect"
+            android:title="Color effect"
+            android:summary="Color effect used to paint the boards when touched" />
         <PreferenceScreen
             android:key="keyboard1"
             android:title="@string/preferences_redkeyboard"
@@ -52,7 +58,6 @@
                 android:key="firstoctave1"
                 android:summary="@string/preferences_firstoctave_summary"
                 android:title="@string/preferences_firstoctave_title" />
-
             <eu.flatworld.android.slider.SeekBarPreference
                 android:defaultValue="50"
                 android:key="attack1"

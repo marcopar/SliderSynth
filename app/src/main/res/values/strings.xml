@@ -59,4 +59,10 @@
     <string name="enable_echo_effect">Enable echo effect</string>
     <string name="echo">Echo</string>
     <string name="general">General</string>
+    <string name="color_effect_none">None</string>
+    <string name="color_effect_soft_rainbow">Soft rainbow</string>
+    <string name="color_effect_hard_rainbow">Hard rainbow</string>
+    <string name="color_effect_none_value">NONE</string>
+    <string name="color_effect_soft_rainbow_value">SOFT_RAINBOW</string>
+    <string name="color_effect_hard_rainbow_value">HARD_RAINBOW</string>
 </resources>

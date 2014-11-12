@@ -31,16 +31,18 @@ public class KeyboardView extends View {
     boolean showSemitonesNames = false;
 
     Drawable background;
+    ColorEffect colorEffect;
 
     final static String semitonesNames[] = {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
 
     public KeyboardView(Context context, String name, int firstOctave, int numberOfOctaves, float maxvol,
-                        Drawable background, boolean showSemitonesLines, boolean showSemitonesNames) {
+                        Drawable background, boolean showSemitonesLines, boolean showSemitonesNames, ColorEffect colorEffect) {
         super(context);
         this.name = name;
         this.showSemitonesLines = showSemitonesLines;
         this.showSemitonesNames = showSemitonesNames;
         this.background = background;
+        this.colorEffect = colorEffect;
         soundGenerators = new ArrayList<SoundGenerator>();
         frequencyManager = new FrequencyManager(firstOctave, numberOfOctaves);
         volumeManager = new VolumeManager(maxvol);
@@ -138,7 +140,7 @@ public class KeyboardView extends View {
         return olderSg;
     }
 
-    int getSmoothColor(int pointer, float x, float y) {
+    int getSmoothRainbowColor(int pointer, float x, float y) {
         int w = getWidth();
         int h = getHeight();
         float hsv[] = new float[]{0, 1, 1};
@@ -149,18 +151,18 @@ public class KeyboardView extends View {
         return android.graphics.Color.HSVToColor(hsv);
     }
 
-    int getExtremeColor(int pointer, float x, float y) {
+    int getHardRainbowColor(int pointer, float x, float y) {
         return 0xFF000000 + (int) Math.round(0xFFFFFF * Math.random());
     }
 
-    int getColor(int pointer, float x, float y, ColorMode colorMode) {
+    int getColor(int pointer, float x, float y, ColorEffect colorMode) {
         switch (colorMode) {
             case NONE:
                 return -1;
-            case SMOOTH:
-                return getSmoothColor(pointer, x, y);
-            case EXTREME:
-                return getExtremeColor(pointer, x, y);
+            case SOFT_RAINBOW:
+                return getSmoothRainbowColor(pointer, x, y);
+            case HARD_RAINBOW:
+                return getHardRainbowColor(pointer, x, y);
         }
         return -1;
     }
@@ -174,7 +176,9 @@ public class KeyboardView extends View {
         sg.setTargetFrequency(frequencyManager.getFrequency(px / w));
         sg.setTargetVolume(volumeManager.getVolume(py / h));
         sg.getEnvelope().noteOn();
-        setBackgroundColor(getColor(pointer, px, py, ColorMode.SMOOTH));
+        if (colorEffect != ColorEffect.NONE) {
+            setBackgroundColor(getColor(pointer, px, py, colorEffect));
+        }
         invalidate();
     }
 
@@ -205,7 +209,9 @@ public class KeyboardView extends View {
         }
         sg.setTargetFrequency(frequencyManager.getFrequency(fp));
         sg.setTargetVolume(volumeManager.getVolume(fv));
-        setBackgroundColor(getColor(pointer, px, py, ColorMode.SMOOTH));
+        if (colorEffect != ColorEffect.NONE) {
+            setBackgroundColor(getColor(pointer, px, py, colorEffect));
+        }
         invalidate();
     }
 

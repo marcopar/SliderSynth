@@ -61,6 +61,8 @@ public class SliderSynth extends Activity {
 
         int bufferSize = pref.getInt("buffersize", 50);
 
+        ColorEffect colorEffect = ColorEffect.valueOf(pref.getString("coloreffect", ColorEffect.NONE.toString()));
+
         mixer = new AddAndClipMixer();
         int byteBufferSize = Math.round(sampleRate * bufferSize / 1000f);
         mixer.setBufferSize(byteBufferSize);
@@ -76,7 +78,8 @@ public class SliderSynth extends Activity {
             int echodelay = pref.getInt("echodelay" + (i + 1), 500);
             float echodecay = pref.getInt("echodecay" + (i + 1), 20) / 100f;
             KeyboardView kbd = new KeyboardView(getApplicationContext(), "kbd" + i,
-                    firstOctave, octavesPerKeyboard, maxvol, keyboardColor[i], showSemitonesLines, showSemitonesNames);
+                    firstOctave, octavesPerKeyboard, maxvol, keyboardColor[i],
+                    showSemitonesLines, showSemitonesNames, colorEffect);
             if (echoenabled) {
                 EchoFilter ef = new EchoFilter(sampleRate * echodelay / 1000, echodecay);
                 kbd.setFilter(ef);

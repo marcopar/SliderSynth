@@ -140,13 +140,13 @@ public class AddAndClipMixer implements Mixer {
     @Override
     public void start() {
         int minSize = AudioTrack.getMinBufferSize(sampleRate,
-                AudioFormat.CHANNEL_CONFIGURATION_MONO,
+                AudioFormat.CHANNEL_OUT_MONO,
                 AudioFormat.ENCODING_PCM_16BIT);
         if (bufferSize < minSize) {
             bufferSize = minSize;
         }
         track = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate,
-                AudioFormat.CHANNEL_CONFIGURATION_MONO,
+                AudioFormat.CHANNEL_OUT_MONO,
                 AudioFormat.ENCODING_PCM_16BIT, bufferSize,
                 AudioTrack.MODE_STREAM);
         track.play();
