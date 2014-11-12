@@ -46,6 +46,8 @@ public class SettingsActivity extends PreferenceActivity implements
                 .unregisterOnSharedPreferenceChangeListener(this);
     }
 
+    //this is for issue 4611 Background from PreferenceActivity is not applied to sub-PreferenceScreen (comment 35)
+    //https://code.google.com/p/android/issues/detail?id=4611
     @Override
     public boolean onPreferenceTreeClick(PreferenceScreen preferenceScreen, Preference preference) {
         super.onPreferenceTreeClick(preferenceScreen, preference);
