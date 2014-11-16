@@ -24,7 +24,6 @@ public class AboutActivity extends Activity implements OnClickListener {
 
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FORCE_NOT_FULLSCREEN);
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.about);
