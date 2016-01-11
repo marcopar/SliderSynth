@@ -12,10 +12,6 @@ public interface Mixer {
 
     List<KeyboardView> getKeyboards();
 
-    int getBufferSize();
-
-    void setBufferSize(int bufferSize);
-
     int getSampleRate();
 
     void setSampleRate(int sampleRate);

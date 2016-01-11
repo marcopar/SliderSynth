@@ -1,7 +1,7 @@
 apply plugin: 'android'
 android {
-    compileSdkVersion 21
-    buildToolsVersion '21.1.1'
+    compileSdkVersion 22
+    buildToolsVersion '22.0.1'
     defaultConfig {
         minSdkVersion 8
         //setting this above 10 makes the menu overflow button disappear
@@ -9,9 +9,9 @@ android {
         //this was not an issue in version 1.x where we were using an opengl screen but now we have plain good old views
         //so we need to get rid of the overflow button and create a menu interface if we want the much more important split events
         //we are now free to target the top
-        targetSdkVersion 21
-        versionCode 20201
-        versionName "2.2.1"
+        targetSdkVersion 22
+        versionCode 20300
+        versionName "2.3.0"
     }
 
     signingConfigs {
@@ -34,5 +34,6 @@ android {
     }
 }
 dependencies {
-    compile 'com.android.support:appcompat-v7:21.+'
+    compile 'com.android.support:appcompat-v7:22.+'
+    compile 'com.android.support:support-v4:22.0.0'
 }

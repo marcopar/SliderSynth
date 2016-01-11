@@ -17,7 +17,6 @@ public class AddAndClipMixer implements Mixer {
     Thread threadWrite;
 
     int sampleRate;
-    int bufferSize = 0;
     short[] mixBuffer;
     short[] writeBuffer;
     float[] tmpBuffer;
@@ -43,16 +42,6 @@ public class AddAndClipMixer implements Mixer {
     @Override
     public List<KeyboardView> getKeyboards() {
         return keyboards;
-    }
-
-    @Override
-    public int getBufferSize() {
-        return bufferSize;
-    }
-
-    @Override
-    public void setBufferSize(int bufferSize) {
-        this.bufferSize = bufferSize;
     }
 
     @Override
@@ -139,25 +128,22 @@ public class AddAndClipMixer implements Mixer {
 
     @Override
     public void start() {
-        int minSize = AudioTrack.getMinBufferSize(sampleRate,
+        int bufferSize = AudioTrack.getMinBufferSize(sampleRate,
                 AudioFormat.CHANNEL_OUT_MONO,
                 AudioFormat.ENCODING_PCM_16BIT);
-        if (bufferSize < minSize) {
-            bufferSize = minSize;
-        }
+
         track = new AudioTrack(AudioManager.STREAM_MUSIC, sampleRate,
                 AudioFormat.CHANNEL_OUT_MONO,
                 AudioFormat.ENCODING_PCM_16BIT, bufferSize,
                 AudioTrack.MODE_STREAM);
         track.play();
-        Log.i(SliderSynth.LOGTAG, "Minimum buffer size: " + minSize);
         Log.i(SliderSynth.LOGTAG, "Buffer size: " + bufferSize);
-        writeBuffer = new short[bufferSize];
-        mixBuffer = new short[bufferSize];
-        finalBuffer = new float[bufferSize];
-        tmpBuffer = new float[bufferSize];
-        keyboardBuffer = new float[bufferSize];
-        cb = new CircularBuffer(bufferSize);
+        writeBuffer = new short[bufferSize/4];
+        mixBuffer = new short[bufferSize/4];
+        finalBuffer = new float[bufferSize/4];
+        tmpBuffer = new float[bufferSize/4];
+        keyboardBuffer = new float[bufferSize/4];
+        cb = new CircularBuffer(bufferSize/4);
         stop = false;
         threadMix = new Thread(new Runnable() {
             public void run() {
