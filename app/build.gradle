@@ -10,8 +10,8 @@ android {
         //so we need to get rid of the overflow button and create a menu interface if we want the much more important split events
         //we are now free to target the top
         targetSdkVersion 22
-        versionCode 20300
-        versionName "2.3.0"
+        versionCode 20204
+        versionName "2.2.4"
     }
 
     signingConfigs {

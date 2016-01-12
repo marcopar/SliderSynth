@@ -25,6 +25,11 @@
             android:key="showsemitonesnames"
             android:summary="@string/preferences_showsemitonesnames_summary"
             android:title="@string/preferences_showsemitonesnames_title" />
+        <CheckBoxPreference
+            android:defaultValue="true"
+            android:key="showcurrentnotes"
+            android:summary="@string/preferences_showcurrentnotes_summary"
+            android:title="@string/preferences_showcurrentnotes_title" />
         <ListPreference
             android:defaultValue="NONE"
             android:entries="@array/coloreffects"

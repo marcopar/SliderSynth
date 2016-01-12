@@ -32,7 +32,6 @@ public final class Oscillator {
         if (this.frequency == frequency) {
             return;
         }
-        //Log.d(Slider.LOGTAG, String.format("%.2f", frequency));
         this.frequency = frequency;
         if (frequency == 0) {
             periodSamples = Long.MAX_VALUE;

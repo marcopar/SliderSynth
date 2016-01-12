@@ -7,9 +7,7 @@ import android.content.res.Configuration;
 import android.graphics.drawable.Drawable;
 import android.media.AudioFormat;
 import android.media.AudioManager;
-import android.media.AudioRecord;
 import android.media.AudioTrack;
-import android.media.MediaRecorder;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -81,6 +79,7 @@ public class SliderSynth extends Activity {
 
         boolean showSemitonesLines = pref.getBoolean("showsemitoneslines", true);
         boolean showSemitonesNames = pref.getBoolean("showsemitonesnames", true);
+        boolean showCurrentNotes = pref.getBoolean("showcurrentnotes", true);
 
         int numberOfKeyboards = 2;
         int screenLayout = getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK;
@@ -117,7 +116,7 @@ public class SliderSynth extends Activity {
             float echodecay = pref.getInt("echodecay" + (i + 1), 20) / 100f;
             KeyboardView kbd = new KeyboardView(getApplicationContext(), "kbd" + i,
                     firstOctave, octavesPerKeyboard, maxvol, keyboardColor[i],
-                    showSemitonesLines, showSemitonesNames, colorEffect);
+                    showSemitonesLines, showSemitonesNames, colorEffect, showCurrentNotes);
             if (echoenabled) {
                 EchoFilter ef = new EchoFilter(sampleRate * echodelay / 1000, echodecay);
                 kbd.setFilter(ef);

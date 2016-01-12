@@ -65,4 +65,6 @@
     <string name="color_effect_none_value">NONE</string>
     <string name="color_effect_soft_rainbow_value">SOFT_RAINBOW</string>
     <string name="color_effect_hard_rainbow_value">HARD_RAINBOW</string>
+    <string name="preferences_showcurrentnotes_summary">Show lines corresponding to the currently played notes</string>
+    <string name="preferences_showcurrentnotes_title">Show current notes</string>
 </resources>

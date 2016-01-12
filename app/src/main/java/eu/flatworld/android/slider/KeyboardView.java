@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -15,6 +16,9 @@ import java.util.List;
  * Created by marcopar on 22/07/14.
  */
 public class KeyboardView extends View {
+    final static int LIGHT_COLOR = 0xFFF0F0F0;
+    final static int DARK_COLOR = 0xFF0F0F0F;
+
     String name;
 
     List<SoundGenerator> soundGenerators;
@@ -26,21 +30,28 @@ public class KeyboardView extends View {
 
     Paint paintText = new Paint();
     Paint paintSemitone = new Paint();
+    Paint paintMarker = new Paint();
 
     boolean showSemitonesLines = false;
     boolean showSemitonesNames = false;
+    boolean showCurrentNotes;
 
     Drawable background;
     ColorEffect colorEffect;
 
+    float lastX[] = new float[20];
+    float lastY[] = new float[20];
+
     final static String semitonesNames[] = {"A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"};
 
     public KeyboardView(Context context, String name, int firstOctave, int numberOfOctaves, float maxvol,
-                        Drawable background, boolean showSemitonesLines, boolean showSemitonesNames, ColorEffect colorEffect) {
+                        Drawable background, boolean showSemitonesLines, boolean showSemitonesNames, ColorEffect colorEffect,
+                        boolean showCurrentNotes) {
         super(context);
         this.name = name;
         this.showSemitonesLines = showSemitonesLines;
         this.showSemitonesNames = showSemitonesNames;
+        this.showCurrentNotes = showCurrentNotes;
         this.background = background;
         this.colorEffect = colorEffect;
         soundGenerators = new ArrayList<SoundGenerator>();
@@ -48,10 +59,15 @@ public class KeyboardView extends View {
         volumeManager = new VolumeManager(maxvol);
         pointerToSoundGenerator = new HashMap<Integer, SoundGenerator>();
         setBackgroundDrawable(background);
-        paintText.setColor(0xFFF0F0F0);
+        paintText.setColor(LIGHT_COLOR);
         paintText.setTextSize(20);
-        paintSemitone.setColor(0xFFF0F0F0);
+        paintSemitone.setColor(LIGHT_COLOR);
         paintSemitone.setStrokeWidth(2);
+        paintMarker.setColor(LIGHT_COLOR);
+        paintMarker.setStrokeWidth(4);
+        paintMarker.setAntiAlias(true);
+        Arrays.fill(lastX, -1);
+        Arrays.fill(lastY, -1);
     }
 
     @Override
@@ -68,32 +84,33 @@ public class KeyboardView extends View {
                 canvas.drawText(semitonesNames[i % 12], i * getWidth() / semitones + 5, 23, paintText);
             }
         }
+        if (showCurrentNotes) {
+            for (int i = 0; i < lastX.length; i++) {
+                if (lastX[i] != -1) {
+                    canvas.drawLine(lastX[i], 0, lastX[i], getHeight(), paintMarker);
+                }
+            }
+        }
         //canvas.drawText(String.format("%.1f Hz", soundGenerators.get(0).getOscillator().getFrequency()), 20, getHeight() - 20, paintText);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        int pointerIndex = event.getActionIndex();
-        int pointerId = event.getPointerId(pointerIndex);
         int maskedAction = event.getActionMasked();
-
-        int x = (int) event.getX(pointerIndex);
-        int y = (int) event.getY(pointerIndex);
-
         switch (maskedAction) {
             case MotionEvent.ACTION_DOWN:
             case MotionEvent.ACTION_POINTER_DOWN: {
-                touchDown(pointerId, x, y);
+                touchDown(event);
                 break;
             }
             case MotionEvent.ACTION_MOVE: {
-                touchDragged(pointerId, x, y);
+                touchDragged(event);
                 break;
             }
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_POINTER_UP:
             case MotionEvent.ACTION_CANCEL: {
-                touchUp(pointerId, x, y);
+                touchUp(event);
                 break;
             }
         }
@@ -155,19 +172,37 @@ public class KeyboardView extends View {
         return 0xFF000000 + (int) Math.round(0xFFFFFF * Math.random());
     }
 
-    int getColor(int pointer, float x, float y, ColorEffect colorMode) {
+    int getBgColor(int pointer, float x, float y, ColorEffect colorMode) {
+        int color = -1;
         switch (colorMode) {
             case NONE:
-                return -1;
+                color = -1;
+                break;
             case SOFT_RAINBOW:
-                return getSmoothRainbowColor(pointer, x, y);
+                color = getSmoothRainbowColor(pointer, x, y);
+                break;
             case HARD_RAINBOW:
-                return getHardRainbowColor(pointer, x, y);
+                color = getHardRainbowColor(pointer, x, y);
+                break;
         }
-        return -1;
+        float brightness = 0.2126f * ((color & 0xFF0000) >> 16) + 0.7152f * ((color & 0xFF00) >> 8) + 0.0722f * (color & 0xFF);
+        if (brightness >= 127) {
+            paintText.setColor(DARK_COLOR);
+            paintSemitone.setColor(DARK_COLOR);
+            paintMarker.setColor(DARK_COLOR);
+        } else {
+            paintText.setColor(LIGHT_COLOR);
+            paintSemitone.setColor(LIGHT_COLOR);
+            paintMarker.setColor(LIGHT_COLOR);
+        }
+        return color;
     }
 
-    public void touchDown(int pointer, float px, float py) {
+    public void touchDown(MotionEvent event) {
+        int pointerIndex = event.getActionIndex();
+        int pointer = event.getPointerId(pointerIndex);
+        float px = event.getX(pointerIndex);
+        float py = event.getY(pointerIndex);
         int w = getWidth();
         int h = getHeight();
         SoundGenerator sg = getNextSoundGenerator();
@@ -177,42 +212,61 @@ public class KeyboardView extends View {
         sg.setTargetVolume(volumeManager.getVolume(py / h));
         sg.getEnvelope().noteOn();
         if (colorEffect != ColorEffect.NONE) {
-            setBackgroundColor(getColor(pointer, px, py, colorEffect));
+            setBackgroundColor(getBgColor(pointer, px, py, colorEffect));
         }
+        lastX[pointer] = px;
+        lastY[pointer] = py;
         invalidate();
     }
 
-    public void touchUp(int pointer, float px, float py) {
+    public void touchUp(MotionEvent event) {
+        int pointerIndex = event.getActionIndex();
+        int pointer = event.getPointerId(pointerIndex);
+        float px = event.getX(pointerIndex);
+        float py = event.getY(pointerIndex);
+
         SoundGenerator sg = pointerToSoundGenerator.get(pointer);
         sg.getEnvelope().noteOff();
         setBackgroundDrawable(background);
+        lastX[pointer] = -1;
+        lastY[pointer] = -1;
+        paintText.setColor(LIGHT_COLOR);
+        paintSemitone.setColor(LIGHT_COLOR);
+        paintMarker.setColor(LIGHT_COLOR);
         invalidate();
     }
 
-    public void touchDragged(int pointer, float px, float py) {
-        int w = getWidth();
-        int h = getHeight();
-        SoundGenerator sg = pointerToSoundGenerator.get(pointer);
-        float fp = px / w;
-        float fv = py / h;
-        if (fp <= 0) {
-            fp = 0;
+    public void touchDragged(MotionEvent event) {
+        for (int i = 0; i < event.getPointerCount(); i++) {
+            int pointer = event.getPointerId(i);
+            int w = getWidth();
+            int h = getHeight();
+            float px = event.getX(i);
+            float py = event.getY(i);
+            SoundGenerator sg = pointerToSoundGenerator.get(pointer);
+            float fp = px / w;
+            float fv = py / h;
+            if (fp <= 0) {
+                fp = 0;
+            }
+            if (fp > 1) {
+                fp = 1;
+            }
+            if (fv <= 0) {
+                fv = Float.MIN_VALUE;
+            }
+            if (fv > 1) {
+                fv = 1;
+            }
+            sg.setTargetFrequency(frequencyManager.getFrequency(fp));
+            sg.setTargetVolume(volumeManager.getVolume(fv));
+            if (colorEffect != ColorEffect.NONE) {
+                setBackgroundColor(getBgColor(pointer, px, py, colorEffect));
+            }
+            lastX[pointer] = px;
+            lastY[pointer] = py;
+            invalidate();
         }
-        if (fp > 1) {
-            fp = 1;
-        }
-        if (fv <= 0) {
-            fv = Float.MIN_VALUE;
-        }
-        if (fv > 1) {
-            fv = 1;
-        }
-        sg.setTargetFrequency(frequencyManager.getFrequency(fp));
-        sg.setTargetVolume(volumeManager.getVolume(fv));
-        if (colorEffect != ColorEffect.NONE) {
-            setBackgroundColor(getColor(pointer, px, py, colorEffect));
-        }
-        invalidate();
     }
 
     public VolumeManager getVolumeManager() {
