@@ -1,2 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/home/marcopar/Documents/AndroidStudioProjects/SliderSynth/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="f8efd0096475e0daf054267b61544e10dc776503">
+        <dex dex="/home/marcopar/Documents/AndroidStudioProjects/SliderSynth/app/build/intermediates/pre-dexed/release/com.android.support-support-v4-22.2.1_dc55a40ff07b41a1109b0da6daac91d268cb6add.jar" />
+    </item>
+    <item
+        jar="/home/marcopar/programmi/android-sdk-linux/extras/android/m2repository/com/android/support/support-annotations/22.2.1/support-annotations-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="61a0ff5c29295ec56d7e0bd3d25d95dbf71b4b2b">
+        <dex dex="/home/marcopar/Documents/AndroidStudioProjects/SliderSynth/app/build/intermediates/pre-dexed/release/support-annotations-22.2.1_c9ef072f168381d8909c16ed7422fd0daca42c3b.jar" />
+    </item>
+    <item
+        jar="/home/marcopar/Documents/AndroidStudioProjects/SliderSynth/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/22.2.1/jars/classes.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="4486e953d1f35f8ccab098b1dd67146366d5f731">
+        <dex dex="/home/marcopar/Documents/AndroidStudioProjects/SliderSynth/app/build/intermediates/pre-dexed/release/com.android.support-appcompat-v7-22.2.1_69d1e2362deb6d8217cdec5c80bd8188af4dd2c2.jar" />
+    </item>
+    <item
+        jar="/home/marcopar/Documents/AndroidStudioProjects/SliderSynth/app/build/intermediates/exploded-aar/com.android.support/support-v4/22.2.1/jars/libs/internal_impl-22.2.1.jar"
+        jumboMode="false"
+        revision="22.0.1"
+        sha1="c471eaaba13ff64f6e0383d1c30a9cdc9a97efeb">
+        <dex dex="/home/marcopar/Documents/AndroidStudioProjects/SliderSynth/app/build/intermediates/pre-dexed/release/internal_impl-22.2.1_96f8b2353b1d455fe1ad9a3d12e222b9de265142.jar" />
+    </item>
+
+</items>
