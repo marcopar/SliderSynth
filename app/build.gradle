@@ -1,7 +1,7 @@
 apply plugin: 'android'
 android {
     compileSdkVersion 22
-    buildToolsVersion '22.0.1'
+    buildToolsVersion '24.0.2'
     defaultConfig {
         minSdkVersion 8
         //setting this above 10 makes the menu overflow button disappear
