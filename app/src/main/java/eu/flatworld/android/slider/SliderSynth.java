@@ -1,6 +1,5 @@
 package eu.flatworld.android.slider;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
@@ -11,6 +10,7 @@ import android.media.AudioTrack;
 import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +21,7 @@ import android.widget.LinearLayout;
 import java.util.Arrays;
 import java.util.List;
 
-public class SliderSynth extends Activity {
+public class SliderSynth extends AppCompatActivity {
     public static String LOGTAG = "slidersynth";
 
     public static int MAX_CHANNELS = 4;
