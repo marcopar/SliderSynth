@@ -2,12 +2,13 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory android:title="@string/general">
         <!--ListPreference
-            android:defaultValue="44100"
-            android:entries="@array/samplerate"
-            android:entryValues="@array/samplerate"
-            android:key="samplerate"
-            android:summary="@string/preferences_samplerate_summary"
-            android:title="@string/preferences_samplerate_title" /-->
+        android:defaultValue="44100"
+        android:entries="@array/samplerate"
+        android:entryValues="@array/samplerate"
+        android:key="samplerate"
+        android:summary="@string/preferences_samplerate_summary"
+        android:title="@string/preferences_samplerate_title" /-->
+
         <ListPreference
             android:defaultValue="2"
             android:entries="@array/numberofkeyboards"
@@ -35,12 +36,12 @@
             android:entries="@array/coloreffects"
             android:entryValues="@array/coloreffects_values"
             android:key="coloreffect"
-            android:title="Color effect"
-            android:summary="Color effect used to paint the boards when touched" />
+            android:summary="Color effect used to paint the boards when touched"
+            android:title="Color effect" />
         <PreferenceScreen
             android:key="keyboard1"
-            android:title="@string/preferences_redkeyboard"
-            android:persistent="true">
+            android:persistent="true"
+            android:title="@string/preferences_redkeyboard">
             <PreferenceCategory android:title="@string/preferences_redkeyboard">
                 <ListPreference
                     android:defaultValue="@string/waveform_sine_value"

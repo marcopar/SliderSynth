@@ -32,8 +32,8 @@ public class KeyboardView extends View {
     Paint paintSemitone = new Paint();
     Paint paintMarker = new Paint();
 
-    boolean showSemitonesLines = false;
-    boolean showSemitonesNames = false;
+    boolean showSemitonesLines;
+    boolean showSemitonesNames;
     boolean showCurrentNotes;
 
     Drawable background;
@@ -54,10 +54,10 @@ public class KeyboardView extends View {
         this.showCurrentNotes = showCurrentNotes;
         this.background = background;
         this.colorEffect = colorEffect;
-        soundGenerators = new ArrayList<SoundGenerator>();
+        soundGenerators = new ArrayList<>();
         frequencyManager = new FrequencyManager(firstOctave, numberOfOctaves);
         volumeManager = new VolumeManager(maxvol);
-        pointerToSoundGenerator = new HashMap<Integer, SoundGenerator>();
+        pointerToSoundGenerator = new HashMap<>();
         setBackgroundDrawable(background);
         paintText.setColor(LIGHT_COLOR);
         paintText.setTextSize(20);
@@ -76,7 +76,9 @@ public class KeyboardView extends View {
         int semitones = frequencyManager.getNumberOfOctaves() * 12;
         if (showSemitonesLines) {
             for (int i = 1; i < semitones; i++) {
-                canvas.drawLine(i * getWidth() / semitones, 0, i * getWidth() / semitones, getHeight(), paintSemitone);
+                canvas.drawLine(i * getWidth()
+                        / semitones, 0, i * getWidth()
+                        / semitones, getHeight(), paintSemitone);
             }
         }
         if (showSemitonesNames) {
@@ -85,13 +87,15 @@ public class KeyboardView extends View {
             }
         }
         if (showCurrentNotes) {
-            for (int i = 0; i < lastX.length; i++) {
-                if (lastX[i] != -1) {
-                    canvas.drawLine(lastX[i], 0, lastX[i], getHeight(), paintMarker);
+            for (float aLastX : lastX) {
+                if (aLastX != -1) {
+                    canvas.drawLine(aLastX, 0, aLastX, getHeight(), paintMarker);
                 }
             }
         }
-        //canvas.drawText(String.format("%.1f Hz", soundGenerators.get(0).getOscillator().getFrequency()), 20, getHeight() - 20, paintText);
+        /*canvas.drawText(String.format("%.1f Hz", soundGenerators.get(0)
+                .getOscillator().getFrequency()), 20, getHeight() - 20, paintText);
+        */
     }
 
     @Override

@@ -79,4 +79,4 @@ public final class Oscillator {
         return value;
     }
 
-};
+}

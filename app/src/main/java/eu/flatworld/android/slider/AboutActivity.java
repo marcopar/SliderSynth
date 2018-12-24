@@ -27,14 +27,14 @@ public class AboutActivity extends Activity implements OnClickListener {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.about);
-        TextView tv = (TextView) findViewById(R.id.aboutTVName);
+        TextView tv = findViewById(R.id.aboutTVName);
         try {
             tv.setText(getResources().getString(R.string.app_name) + " " + version + "\n\nwww.flatworld.eu");
         } catch (Exception e) {
             tv.setText(getResources().getString(R.string.app_name) + "\n\nwww.flatworld.eu");
         }
 
-        tv = (TextView) findViewById(R.id.aboutTVName);
+        tv = findViewById(R.id.aboutTVName);
         tv.setOnClickListener(this);
     }
 
@@ -42,12 +42,11 @@ public class AboutActivity extends Activity implements OnClickListener {
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.aboutTVName) {
-            Uri webpage = Uri.parse("http://www.flatworld.eu");
+            Uri webpage = Uri.parse("http://www.flatworld.eu/");
             Intent intent = new Intent(Intent.ACTION_VIEW, webpage);
             startActivity(intent);
         }
     }
-
 
     @Override
     protected void onResume() {

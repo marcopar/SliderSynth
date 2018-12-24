@@ -1,8 +1,8 @@
 package eu.flatworld.android.slider;
 
 public class FrequencyManager {
-    float hz[] = null;
-    float hzPosition[] = null;
+    float hz[];
+    float hzPosition[];
     int firstOctave;
     int numberOfOctaves;
 
@@ -34,7 +34,7 @@ public class FrequencyManager {
         float max = 0;
         int minpos = 0;
         int maxpos = 1;
-        int i = 0;
+        int i;
         for (i = 0; i < hzPosition.length - 1; i++) {
             min = hzPosition[i];
             max = hzPosition[i + 1];
@@ -44,7 +44,6 @@ public class FrequencyManager {
                 break;
             }
         }
-        float f = hz[minpos] + (value - min) / (max - min) * (hz[maxpos] - hz[minpos]);
-        return f;
+        return hz[minpos] + (value - min) / (max - min) * (hz[maxpos] - hz[minpos]);
     }
 }

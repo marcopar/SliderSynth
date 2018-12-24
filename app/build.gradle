@@ -1,17 +1,15 @@
 apply plugin: 'com.android.application'
+
 android {
-    compileSdkVersion 22
-    buildToolsVersion '28.0.2'
+    compileSdkVersion 28
+    buildToolsVersion '28.0.3'
+
     defaultConfig {
-        minSdkVersion 8
-        //setting this above 10 makes the menu overflow button disappear
-        //setting this below 11, if multiple views are on screen they can't receive multiple separated events (honeycomb split touch events)
-        //this was not an issue in version 1.x where we were using an opengl screen but now we have plain good old views
-        //so we need to get rid of the overflow button and create a menu interface if we want the much more important split events
-        //we are now free to target the top
-        targetSdkVersion 22
-        versionCode 20302
-        versionName "2.3.2"
+        applicationId "eu.flatworld.android.slider"
+        minSdkVersion 14
+        targetSdkVersion 28
+        versionCode 20400
+        versionName "2.4"
     }
 
     signingConfigs {
@@ -25,15 +23,24 @@ android {
 
     buildTypes {
         release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
         debug {
-            debuggable true
+            zipAlignEnabled true
             signingConfig signingConfigs.release
         }
     }
+
+    compileOptions {
+        encoding = 'UTF-8'
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
+
 dependencies {
-    implementation 'com.android.support:appcompat-v7:22.+'
-    implementation 'com.android.support:support-v4:22.+'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
 }

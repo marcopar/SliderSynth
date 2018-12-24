@@ -11,25 +11,25 @@
         android:layout_margin="50dp"
         android:layout_weight="10"
         android:contentDescription="Big icon"
-        android:maxHeight="512dp"
         android:maxWidth="512dp"
+        android:maxHeight="512dp"
         android:src="@drawable/bigicon" />
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1"
-        android:orientation="vertical"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginRight="50dp"
         android:layout_marginBottom="50dp"
-        android:layout_marginRight="50dp">
+        android:layout_weight="1"
+        android:orientation="vertical">
 
-    <TextView
+        <TextView
             android:id="@+id/aboutTVName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:layout_weight="4"
             android:gravity="center"
             android:text="@string/app_name"
             android:textAppearance="?android:attr/textAppearanceLarge"
@@ -40,9 +40,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
-            android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/aboutCredits"
+            android:text="@string/about_credits"
             android:textAppearance="?android:attr/textAppearanceSmall" />
 
     </LinearLayout>

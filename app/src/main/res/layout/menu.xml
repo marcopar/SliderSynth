@@ -1,55 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="fill_parent"
-    android:layout_width="fill_parent">
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_height="wrap_content"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true">
 
-
         <ImageView
+            android:id="@+id/ivLogo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/ivLogo"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:src="@drawable/bigicon"
+            android:layout_marginBottom="10dp"
             android:adjustViewBounds="true"
-            android:maxHeight="120dp"
             android:maxWidth="120dp"
-            android:layout_marginBottom="10dp" />
+            android:maxHeight="120dp"
+            android:src="@drawable/bigicon" />
 
         <Button
+            android:id="@+id/bPlay"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
-        android:text="Play"
-        android:id="@+id/bPlay"
             android:layout_below="@+id/ivLogo"
-        android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
-            android:background="@drawable/button_background1" />
-
-        <Button
-            android:layout_width="fill_parent"
-            android:layout_height="40dp"
-        android:text="Settings"
-        android:id="@+id/bSettings"
-        android:layout_below="@+id/bPlay"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/button_background2" />
+            android:background="@drawable/button_background1"
+            android:text="@string/play" />
 
         <Button
+            android:id="@+id/bSettings"
             android:layout_width="fill_parent"
             android:layout_height="40dp"
-        android:text="About"
-        android:id="@+id/bAbout"
-        android:layout_below="@+id/bSettings"
+            android:layout_below="@+id/bPlay"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/button_background3" />
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/button_background2"
+            android:text="@string/settings" />
+
+        <Button
+            android:id="@+id/bAbout"
+            android:layout_width="fill_parent"
+            android:layout_height="40dp"
+            android:layout_below="@+id/bSettings"
+            android:layout_centerHorizontal="true"
+            android:background="@drawable/button_background3"
+            android:text="@string/about" />
 
     </RelativeLayout>
 </RelativeLayout>

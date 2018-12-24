@@ -26,7 +26,7 @@ public class AddAndClipMixer implements Mixer {
     CircularBuffer cb;
 
     public AddAndClipMixer() {
-        keyboards = new ArrayList<KeyboardView>();
+        keyboards = new ArrayList<>();
     }
 
     @Override
@@ -60,16 +60,16 @@ public class AddAndClipMixer implements Mixer {
         }
     }
 
-    void setBuffer(float[] dest, float value) {
+    void setBuffer(float[] dest) {
         for (int i = 0; i < dest.length; i++) {
-            dest[i] = value;
+            dest[i] = (float) 0;
         }
     }
 
     void fillBuffer(short[] buffer, int n) {
-        setBuffer(finalBuffer, 0);
+        setBuffer(finalBuffer);
         for (int j = 0; j < keyboards.size(); j++) {
-            setBuffer(keyboardBuffer, 0);
+            setBuffer(keyboardBuffer);
             KeyboardView k = keyboards.get(j);
             List<SoundGenerator> sgg = k.getSoundGenerators();
             for (int m = 0; m < sgg.size(); m++) {
@@ -122,7 +122,7 @@ public class AddAndClipMixer implements Mixer {
     void sleep(long t) {
         try {
             Thread.sleep(t);
-        } catch (Exception ex) {
+        } catch (Exception ignored) {
         }
     }
 
@@ -138,25 +138,17 @@ public class AddAndClipMixer implements Mixer {
                 AudioTrack.MODE_STREAM);
         track.play();
         Log.i(SliderSynth.LOGTAG, "Buffer size: " + bufferSize);
-        writeBuffer = new short[bufferSize/4];
-        mixBuffer = new short[bufferSize/4];
-        finalBuffer = new float[bufferSize/4];
-        tmpBuffer = new float[bufferSize/4];
-        keyboardBuffer = new float[bufferSize/4];
-        cb = new CircularBuffer(bufferSize/4);
+        writeBuffer = new short[bufferSize / 4];
+        mixBuffer = new short[bufferSize / 4];
+        finalBuffer = new float[bufferSize / 4];
+        tmpBuffer = new float[bufferSize / 4];
+        keyboardBuffer = new float[bufferSize / 4];
+        cb = new CircularBuffer(bufferSize / 4);
         stop = false;
-        threadMix = new Thread(new Runnable() {
-            public void run() {
-                doMix();
-            }
-        });
+        threadMix = new Thread(this::doMix);
         threadMix.setPriority(Thread.MAX_PRIORITY);
         threadMix.start();
-        threadWrite = new Thread(new Runnable() {
-            public void run() {
-                writeMix();
-            }
-        });
+        threadWrite = new Thread(this::writeMix);
         threadWrite.start();
     }
 
@@ -166,14 +158,14 @@ public class AddAndClipMixer implements Mixer {
             stop = true;
             try {
                 threadMix.join();
-            } catch (Exception ex) {
+            } catch (Exception ignored) {
             }
         }
         if (threadWrite != null) {
             stop = true;
             try {
                 threadWrite.join();
-            } catch (Exception ex) {
+            } catch (Exception ignored) {
             }
         }
         keyboards.clear();

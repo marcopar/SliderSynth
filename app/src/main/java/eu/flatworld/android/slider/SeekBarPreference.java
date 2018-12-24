@@ -54,9 +54,9 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
         mMaxValue = attrs.getAttributeIntValue(ANDROIDNS, "max", 100);
         mMinValue = attrs.getAttributeIntValue(APPLICATIONNS, "min", 0);
 
-        mUnitsLeft = getAttributeStringValue(attrs, APPLICATIONNS, "unitsLeft", "");
-        String units = getAttributeStringValue(attrs, APPLICATIONNS, "units", "");
-        mUnitsRight = getAttributeStringValue(attrs, APPLICATIONNS, "unitsRight", units);
+        mUnitsLeft = getAttributeStringValue(attrs, "unitsLeft", "");
+        String units = getAttributeStringValue(attrs, "units", "");
+        mUnitsRight = getAttributeStringValue(attrs, "unitsRight", units);
 
         try {
             String newInterval = attrs.getAttributeValue(APPLICATIONNS, "interval");
@@ -68,8 +68,8 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
 
     }
 
-    private String getAttributeStringValue(AttributeSet attrs, String namespace, String name, String defaultValue) {
-        String value = attrs.getAttributeValue(namespace, name);
+    private String getAttributeStringValue(AttributeSet attrs, String name, String defaultValue) {
+        String value = attrs.getAttributeValue(SeekBarPreference.APPLICATIONNS, name);
         if (value == null)
             value = defaultValue;
 
@@ -95,7 +95,7 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
         try {
             // move our seekbar to the new view we've been given
             ViewParent oldContainer = mSeekBar.getParent();
-            ViewGroup newContainer = (ViewGroup) view.findViewById(R.id.seekBarPrefBarContainer);
+            ViewGroup newContainer = view.findViewById(R.id.seekBarPrefBarContainer);
 
             if (oldContainer != newContainer) {
                 // remove the seekbar from the old view
@@ -127,17 +127,17 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
     protected void updateView(View view) {
 
         try {
-            mStatusText = (TextView) view.findViewById(R.id.seekBarPrefValue);
+            mStatusText = view.findViewById(R.id.seekBarPrefValue);
 
             mStatusText.setText(String.valueOf(mCurrentValue));
             mStatusText.setMinimumWidth(30);
 
             mSeekBar.setProgress(mCurrentValue - mMinValue);
 
-            TextView unitsRight = (TextView) view.findViewById(R.id.seekBarPrefUnitsRight);
+            TextView unitsRight = view.findViewById(R.id.seekBarPrefUnitsRight);
             unitsRight.setText(mUnitsRight);
 
-            TextView unitsLeft = (TextView) view.findViewById(R.id.seekBarPrefUnitsLeft);
+            TextView unitsLeft = view.findViewById(R.id.seekBarPrefUnitsLeft);
             unitsLeft.setText(mUnitsLeft);
 
         } catch (Exception e) {
@@ -167,7 +167,6 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
         mCurrentValue = newValue;
         mStatusText.setText(String.valueOf(newValue));
         persistInt(newValue);
-
     }
 
     @Override
@@ -179,13 +178,9 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
         notifyChanged();
     }
 
-
     @Override
     protected Object onGetDefaultValue(TypedArray ta, int index) {
-
-        int defaultValue = ta.getInt(index, DEFAULT_VALUE);
-        return defaultValue;
-
+        return ta.getInt(index, DEFAULT_VALUE);
     }
 
     @Override
@@ -204,7 +199,6 @@ public class SeekBarPreference extends Preference implements OnSeekBarChangeList
             persistInt(temp);
             mCurrentValue = temp;
         }
-
     }
 
     /**

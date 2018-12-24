@@ -40,12 +40,12 @@ public class SliderSynth extends Activity {
     }
 
     int findBestSampleRate() {
-        if(Build.VERSION.SDK_INT >= 17) {
+        if (Build.VERSION.SDK_INT >= 17) {
             AudioManager manager = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
             return Integer.parseInt(manager.getProperty(AudioManager.PROPERTY_OUTPUT_SAMPLE_RATE));
         } else {
             int found_rate = 0;
-            for (int rate : new int[] {48000, 44100, 22050, 11025}) {
+            for (int rate : new int[]{48000, 44100, 22050, 11025}) {
                 AudioTrack at = null;
                 try {
                     int bufferSize = AudioTrack.getMinBufferSize(rate,
@@ -59,14 +59,14 @@ public class SliderSynth extends Activity {
                     //not valid
                     continue;
                 } finally {
-                    if(at != null) {
+                    if (at != null) {
                         at.release();
                     }
                 }
                 found_rate = rate;
                 break;
             }
-            if(found_rate == 0) {
+            if (found_rate == 0) {
                 found_rate = 44100;
             }
             return found_rate;
@@ -93,17 +93,19 @@ public class SliderSynth extends Activity {
             Log.w(LOGTAG, "Parse numberofkeyboards: " + ex.toString(), ex);
         }
 
-        /*int sampleRate = 44100;
+/*
+        int sampleRate = 44100;
         try {
             sampleRate = Integer.valueOf(pref.getString("samplerate", "44100"));
         } catch (Throwable ex) {
             Log.w(LOGTAG, "Parse samplerate: " + ex.toString(), ex);
-        }*/
+        }
+*/
         int sampleRate = findBestSampleRate();
 
         ColorEffect colorEffect = ColorEffect.valueOf(pref.getString("coloreffect", ColorEffect.NONE.toString()));
         mixer = new AddAndClipMixer();
-        ViewGroup parent = (ViewGroup) findViewById(R.id.contentLayout);
+        ViewGroup parent = findViewById(R.id.contentLayout);
         parent.removeAllViews();
         for (int i = 0; i < numberOfKeyboards; i++) {
             int firstOctave = Integer.valueOf(pref.getString("firstoctave" + (i + 1), "4"));
@@ -216,5 +218,6 @@ public class SliderSynth extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
-    }*/
+    }
+*/
 }

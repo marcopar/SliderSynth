@@ -3,14 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="eu.flatworld.android.slider.SliderSynth">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/settings"
         android:icon="@android:drawable/ic_menu_preferences"
-        android:title="@string/action_settings"
         android:orderInCategory="100"
+        android:title="@string/settings"
         app:showAsAction="ifRoom" />
     <item
-        android:id="@+id/action_about"
-        android:title="@string/action_about"
+        android:id="@+id/about"
         android:orderInCategory="101"
+        android:title="@string/about"
         app:showAsAction="never" />
 </menu>

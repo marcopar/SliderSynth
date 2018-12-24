@@ -25,8 +25,6 @@ public class Envelope {
         ATTACK, DECAY, SUSTAIN, RELEASE, DONE
     }
 
-    ;
-
     State state;
 
     public Envelope() {
