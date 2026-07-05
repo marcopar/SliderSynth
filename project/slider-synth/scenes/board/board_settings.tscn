@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://cojcjbjlap7p0"]
+
+[node name="BoardSettings" type="Control" unique_id=1482316414]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1885331742]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1405876913]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Waveform"
+
+[node name="ItemList" type="ItemList" parent="VBoxContainer" unique_id=124398487]
+layout_mode = 2
+theme_override_font_sizes/font_size = 28
+allow_search = false
+auto_height = true
+item_count = 2
+item_0/text = "Sine"
+item_1/text = "Square"
+
+[node name="Label2" type="Label" parent="VBoxContainer" unique_id=1181174082]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Attack"
+
+[node name="HSlider" type="HSlider" parent="VBoxContainer" unique_id=1913026072]
+layout_mode = 2
+
+[node name="Label3" type="Label" parent="VBoxContainer" unique_id=1077574135]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Decay"
+
+[node name="HSlider2" type="HSlider" parent="VBoxContainer" unique_id=723267355]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="VBoxContainer" unique_id=1316700550]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Sustain"
+
+[node name="HSlider3" type="HSlider" parent="VBoxContainer" unique_id=2064677055]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="VBoxContainer" unique_id=484984551]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Release"
+
+[node name="HSlider4" type="HSlider" parent="VBoxContainer" unique_id=1227081943]
+layout_mode = 2

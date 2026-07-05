@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://p53bf2mp512o"]
+
+[ext_resource type="Script" uid="uid://vjyxxbrdsucu" path="res://scenes/board/board.gd" id="1_s78fa"]
+[ext_resource type="Script" uid="uid://cqssf6wu2hs1h" path="res://addons/godot_synth/synth_patch.gd" id="2_jnyf0"]
+
+[sub_resource type="Resource" id="Resource_s78fa"]
+script = ExtResource("2_jnyf0")
+waveform = 1
+harmonics = PackedFloat32Array()
+harmonic_ratios = PackedFloat32Array()
+metadata/_custom_type_script = "uid://cqssf6wu2hs1h"
+
+[node name="Board" type="Control" unique_id=962121432]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s78fa")
+patch = SubResource("Resource_s78fa")
+border_color = Color(1, 1, 1, 1)
+main_area_color = Color(0.060530342, 0.06053035, 0.060530327, 1)
+first_octave = 1
+number_of_octaves = 8
+
+[node name="Border" type="ColorRect" parent="." unique_id=33180307]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Border" unique_id=1846799794]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="MainArea" type="ColorRect" parent="Border/MarginContainer" unique_id=31838776]
+layout_mode = 2
+color = Color(0.07762889, 0.07762881, 0.0776288, 1)
+
+[connection signal="gui_input" from="Border/MarginContainer/MainArea" to="." method="_on_main_area_gui_input"]

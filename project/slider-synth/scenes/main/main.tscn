@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://cc6lk7vc8gjft"]
+
+[ext_resource type="PackedScene" uid="uid://p53bf2mp512o" path="res://scenes/board/board.tscn" id="1_hyk8p"]
+[ext_resource type="Script" uid="uid://dpsgm530xbm3o" path="res://scenes/main/main.gd" id="1_iuonh"]
+
+[node name="Main" type="Control" unique_id=962121432]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_iuonh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=847680863]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Board" parent="VBoxContainer" unique_id=2023423202 instance=ExtResource("1_hyk8p")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Board2" parent="VBoxContainer" unique_id=1955030298 instance=ExtResource("1_hyk8p")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Board3" parent="VBoxContainer" unique_id=785175181 instance=ExtResource("1_hyk8p")]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Board4" parent="VBoxContainer" unique_id=2011065176 instance=ExtResource("1_hyk8p")]
+layout_mode = 2
+size_flags_vertical = 3
