@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dpatdemo0001"]
+
+[ext_resource type="PackedScene" uid="uid://dpatedit0001" path="res://addons/godot_synth/editor/pattern_editor.tscn" id="1_editor"]
+
+[node name="PatternEditorDemo" type="Control"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PatternEditor" parent="." instance=ExtResource("1_editor")]
+layout_mode = 1
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = -10.0

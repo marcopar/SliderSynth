@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://11mcivxhu4tf"]
+
+[ext_resource type="Script" uid="uid://ctxp5hyry15vn" path="res://addons/godot_synth/examples/music_test.gd" id="1_test"]
+[ext_resource type="Script" uid="uid://cqssf6wu2hs1h" path="res://addons/godot_synth/synth_patch.gd" id="2_6y4wi"]
+[ext_resource type="Script" uid="uid://b37jl1sct5cj6" path="res://addons/godot_synth/synth_engine.gd" id="2_synth"]
+[ext_resource type="Script" uid="uid://uuok5a7rstm" path="res://addons/godot_synth/midi_player.gd" id="3_midi"]
+[ext_resource type="Script" uid="uid://cxi65gm4k0pmv" path="res://addons/godot_synth/editor/patch_editor.gd" id="5_editor"]
+
+[sub_resource type="Resource" id="Resource_lluqg"]
+script = ExtResource("2_6y4wi")
+harmonics = PackedFloat32Array()
+harmonic_ratios = PackedFloat32Array()
+attack = 0.735
+decay = 0.415
+release = 1.585
+metadata/_custom_type_script = "uid://cqssf6wu2hs1h"
+
+[node name="MusicTest" type="Node" unique_id=23054986]
+script = ExtResource("1_test")
+patch = SubResource("Resource_lluqg")
+
+[node name="SynthEngine" type="Node" parent="." unique_id=312352908]
+script = ExtResource("2_synth")
+
+[node name="MidiPlayer" type="Node" parent="." unique_id=665012390]
+script = ExtResource("3_midi")
+
+[node name="EditorLayer" type="CanvasLayer" parent="." unique_id=1827216491]
+
+[node name="EditorScroll" type="ScrollContainer" parent="EditorLayer" unique_id=1287381395]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 670.0
+offset_bottom = -10.0
+horizontal_scroll_mode = 0
+
+[node name="PatchEditor" type="PanelContainer" parent="EditorLayer/EditorScroll" unique_id=927470799]
+custom_minimum_size = Vector2(640, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+script = ExtResource("5_editor")

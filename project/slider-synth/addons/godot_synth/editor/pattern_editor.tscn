@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://bhmixyw2l8xuk"]
+
+[ext_resource type="Script" uid="uid://4iyrwrpe86y2" path="res://addons/godot_synth/editor/pattern_editor.gd" id="1_editor"]
+
+
+[node name="PatternEditor" type="PanelContainer" unique_id=1604851204]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_editor")
