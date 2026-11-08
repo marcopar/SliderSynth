@@ -24,10 +24,13 @@ theme_override_constants/separation = 0
 [node name="Board" parent="VBoxContainer" unique_id=2023423202 instance=ExtResource("1_hyk8p")]
 layout_mode = 2
 size_flags_vertical = 3
+first_octave = -1
+number_of_octaves = 11
 
 [node name="Board2" parent="VBoxContainer" unique_id=1955030298 instance=ExtResource("1_hyk8p")]
 layout_mode = 2
 size_flags_vertical = 3
+first_octave = 2
 
 [node name="Board3" parent="VBoxContainer" unique_id=785175181 instance=ExtResource("1_hyk8p")]
 layout_mode = 2
@@ -36,3 +39,4 @@ size_flags_vertical = 3
 [node name="Board4" parent="VBoxContainer" unique_id=2011065176 instance=ExtResource("1_hyk8p")]
 layout_mode = 2
 size_flags_vertical = 3
+first_octave = 6

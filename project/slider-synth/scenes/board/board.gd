@@ -4,11 +4,10 @@ class_name Board
 
 @onready var border: ColorRect = $Border
 @onready var main_area: ColorRect = $Border/MarginContainer/MainArea
+@onready var label: Label = $Border/MarginContainer/MainArea/Label
 
-var synth: SynthEngine
-@export
-var patch: SynthPatch
-var current_i_note: int
+var synth: MiniSynth
+var voice: SynthVoice
 
 @export
 var border_color: Color
@@ -23,31 +22,28 @@ var number_of_octaves: int = 2
 func _ready() -> void:
 	border.color = border_color
 	main_area.color = main_area_color
-	
-	synth = SynthEngine.new()
-	synth.set_patch(0, patch)
+	synth = MiniSynth.new()
 	add_child(synth)
-	
+	voice = synth.create_voice()
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
-func calculate_f_note(x: float) -> float:
-	var semi: float = x / main_area.size.x * number_of_octaves * 12
-	return minf(12 * (first_octave + 1) + semi, 127)
+func calculate_frequency(x: float) -> float:
+	return 32.7032 * pow(2.0, first_octave - 1 + (x / main_area.size.x) * number_of_octaves)
 
 func _on_main_area_gui_input(event: InputEvent) -> void:
 	if event is InputEventScreenTouch:
 		var touchEvent: InputEventScreenTouch = event
 		if touchEvent.pressed:
-			var note: float = calculate_f_note(touchEvent.position.x)
-			current_i_note = roundi(note)
-			synth.note_on(0, note)
+			var frequency: float = calculate_frequency(touchEvent.position.x)
+			voice.note_on(frequency)
+			label.text = "%f" % frequency
 		else:
-			synth.note_off(0, current_i_note)
+			voice.note_off()
 	if event is InputEventScreenDrag:
 		var dragEvent: InputEventScreenDrag = event
-		var new_note: float = calculate_f_note(dragEvent.position.x)
-		var target_freq: float = 440.0 * pow(2.0, (new_note - 69.0) / 12.0)
-		synth.bend_to(0, current_i_note, target_freq, 0.01)
+		var frequency: float = calculate_frequency(dragEvent.position.x)
+		voice.sweep_to(frequency, 0.01)
+		label.text = "%f" % frequency
