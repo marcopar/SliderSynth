@@ -2,23 +2,18 @@
 
 [ext_resource type="Script" uid="uid://d04fuwj0spl0x" path="res://scenes/board/board_settings.gd" id="1_urex5"]
 
+[sub_resource type="ButtonGroup" id="ButtonGroup_r4oya"]
+
 [node name="BoardSettings" type="Control" unique_id=1482316414]
 layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+anchors_preset = 0
+size_flags_vertical = 0
 script = ExtResource("1_urex5")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=2049746266]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 0
+offset_right = 1390.0
+offset_bottom = 622.0
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -28,63 +23,93 @@ theme_override_constants/margin_bottom = 20
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1405876913]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=896394828]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "Waveform"
+theme_override_constants/separation = 50
 
-[node name="WaveformList" type="ItemList" parent="MarginContainer/VBoxContainer" unique_id=124398487]
+[node name="SineButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=179346384]
+custom_minimum_size = Vector2(400, 200)
 layout_mode = 2
-theme_override_font_sizes/font_size = 28
-allow_search = false
-auto_height = true
-item_count = 4
-item_0/text = "Sine"
-item_1/text = "Square"
-item_2/text = "Saw"
-item_3/text = "Triangle"
+theme_override_font_sizes/font_size = 60
+toggle_mode = true
+button_group = SubResource("ButtonGroup_r4oya")
+text = "SINE"
+
+[node name="SquareButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1882949026]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+toggle_mode = true
+button_group = SubResource("ButtonGroup_r4oya")
+text = "SQUARE"
+
+[node name="TriangleButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1994089216]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+toggle_mode = true
+button_group = SubResource("ButtonGroup_r4oya")
+text = "TRIANGLE"
+
+[node name="SawtoothButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1672542252]
+custom_minimum_size = Vector2(400, 200)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+toggle_mode = true
+button_group = SubResource("ButtonGroup_r4oya")
+text = "SAWTOOTH"
 
 [node name="Label2" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1181174082]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 50
 text = "Attack"
 
 [node name="AttackSlider" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=1913026072]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+max_value = 5.0
+step = 0.1
+tick_count = 50
+ticks_on_borders = true
 
 [node name="Label3" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1077574135]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 50
 text = "Decay"
 
 [node name="DecaySlider" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=723267355]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+max_value = 5.0
+step = 0.1
+tick_count = 50
+ticks_on_borders = true
 
 [node name="Label4" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1316700550]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 50
 text = "Sustain"
 
 [node name="SustainSlider" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=2064677055]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+tick_count = 100
+ticks_on_borders = true
 
 [node name="Label5" type="Label" parent="MarginContainer/VBoxContainer" unique_id=484984551]
 layout_mode = 2
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 50
 text = "Release"
 
 [node name="ReleaseSlider" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=1227081943]
+custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+max_value = 5.0
+step = 0.1
+tick_count = 50
+ticks_on_borders = true
 
 [node name="CloseButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=59519976]
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
+theme_override_font_sizes/font_size = 60
 text = "Close"
-
-[node name="Label" type="Label" parent="." unique_id=501718604]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
-text = "*"
-horizontal_alignment = 1
-vertical_alignment = 1
