@@ -25,7 +25,7 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_vertical = 3
 border_color = Color(1, 0, 0, 1)
-first_octave = -1
+first_octave = 0
 number_of_octaves = 11
 
 [node name="RedSettingsButton" type="Button" parent="VBoxContainer/RedBoard" unique_id=1010187072]

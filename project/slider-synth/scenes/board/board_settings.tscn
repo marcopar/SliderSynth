@@ -35,6 +35,7 @@ offset_right = 895.0
 offset_bottom = 473.5
 grow_horizontal = 2
 grow_vertical = 2
+offset_transform_enabled = true
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
@@ -167,9 +168,13 @@ text = "Release"
 max_value = 10.0
 step = 0.1
 
+[node name="PanelContainer" type="PanelContainer" parent="MainMargin/InternalMargin/VBoxContainer" unique_id=1439088134]
+layout_mode = 2
+size_flags_vertical = 3
+
 [node name="CloseButton" type="Button" parent="MainMargin/InternalMargin/VBoxContainer" unique_id=59519976]
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 8
 theme_override_font_sizes/font_size = 60
 text = "Close"
 

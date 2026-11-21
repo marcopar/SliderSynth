@@ -24,7 +24,7 @@ var attack: float = 0.1
 @export
 var decay: float = 0.1
 @export
-var sustain: float = 70
+var sustain: float = 0.7
 @export
 var release: float = 0.1
 
@@ -41,7 +41,7 @@ func build_voices() -> void:
 		synth.remove_voice(v)
 	voices.clear()
 	for i in range(10):
-		var voice: SynthVoice = synth.create_voice()
+		var voice: SynthVoice = synth.create_voice(waveform)
 		voice.attack_seconds = attack
 		voice.decay_seconds = decay
 		voice.sustain_level = sustain
