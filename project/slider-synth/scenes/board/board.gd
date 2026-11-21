@@ -14,9 +14,19 @@ var border_color: Color
 @export
 var main_area_color: Color
 @export
+var waveform: SynthVoice.Waveform = SynthVoice.Waveform.SINE
+@export
 var first_octave: int = 4
 @export
 var number_of_octaves: int = 2
+@export
+var attack: float = 0.1
+@export
+var decay: float = 0.1
+@export
+var sustain: float = 70
+@export
+var release: float = 0.1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,10 +34,20 @@ func _ready() -> void:
 	main_area.color = main_area_color
 	synth = MiniSynth.new()
 	add_child(synth)
+	build_voices()
+
+func build_voices() -> void:
+	for v in voices:
+		synth.remove_voice(v)
+	voices.clear()
 	for i in range(10):
 		var voice: SynthVoice = synth.create_voice()
+		voice.attack_seconds = attack
+		voice.decay_seconds = decay
+		voice.sustain_level = sustain
+		voice.release_seconds = release
 		voices.append(voice)
-
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass

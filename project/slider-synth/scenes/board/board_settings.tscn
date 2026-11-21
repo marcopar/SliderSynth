@@ -1,115 +1,183 @@
 [gd_scene format=3 uid="uid://cojcjbjlap7p0"]
 
 [ext_resource type="Script" uid="uid://d04fuwj0spl0x" path="res://scenes/board/board_settings.gd" id="1_urex5"]
+[ext_resource type="Texture2D" uid="uid://ncoq8bbvo24j" path="res://assets/sine-wave.svg" id="2_bdg2g"]
+[ext_resource type="Texture2D" uid="uid://cv10g4peu6ukr" path="res://assets/square-wave.svg" id="3_youy0"]
+[ext_resource type="Texture2D" uid="uid://cj058trwir7hb" path="res://assets/triangle-wave.svg" id="4_y547v"]
+[ext_resource type="Texture2D" uid="uid://clk62oprjowmf" path="res://assets/sawtooth-wave.svg" id="5_1n6bp"]
+[ext_resource type="PackedScene" uid="uid://bi05i5324hbes" path="res://scenes/slidercontrol/slider_control.tscn" id="6_youy0"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_r4oya"]
 
 [node name="BoardSettings" type="Control" unique_id=1482316414]
 layout_mode = 3
-anchors_preset = 0
-size_flags_vertical = 0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 script = ExtResource("1_urex5")
 
-[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2049746266]
-layout_mode = 0
-offset_right = 1390.0
-offset_bottom = 622.0
+[node name="MainMargin" type="MarginContainer" parent="." unique_id=1835782939]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -895.0
+offset_top = -473.5
+offset_right = 895.0
+offset_bottom = 473.5
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1885331742]
+[node name="ColorRect" type="ColorRect" parent="MainMargin" unique_id=633161486]
+layout_mode = 2
+color = Color(0.4630682, 0.4630682, 0.463068, 1)
+
+[node name="InternalMargin" type="MarginContainer" parent="MainMargin" unique_id=2049746266]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="ColorRect" type="ColorRect" parent="MainMargin/InternalMargin" unique_id=501075993]
+layout_mode = 2
+color = Color(0.23248088, 0.23248091, 0.23248085, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMargin/InternalMargin" unique_id=523825]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=896394828]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMargin/InternalMargin/VBoxContainer" unique_id=896394828]
 layout_mode = 2
 theme_override_constants/separation = 50
 
-[node name="SineButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=179346384]
-custom_minimum_size = Vector2(400, 200)
+[node name="SineButton" type="Button" parent="MainMargin/InternalMargin/VBoxContainer/HBoxContainer" unique_id=179346384]
+custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 toggle_mode = true
 button_group = SubResource("ButtonGroup_r4oya")
-text = "SINE"
+icon = ExtResource("2_bdg2g")
+icon_alignment = 1
+expand_icon = true
 
-[node name="SquareButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1882949026]
-custom_minimum_size = Vector2(400, 200)
+[node name="SquareButton" type="Button" parent="MainMargin/InternalMargin/VBoxContainer/HBoxContainer" unique_id=1882949026]
+custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 toggle_mode = true
 button_group = SubResource("ButtonGroup_r4oya")
-text = "SQUARE"
+icon = ExtResource("3_youy0")
+icon_alignment = 1
+expand_icon = true
 
-[node name="TriangleButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1994089216]
-custom_minimum_size = Vector2(400, 200)
+[node name="TriangleButton" type="Button" parent="MainMargin/InternalMargin/VBoxContainer/HBoxContainer" unique_id=1994089216]
+custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 toggle_mode = true
 button_group = SubResource("ButtonGroup_r4oya")
-text = "TRIANGLE"
+icon = ExtResource("4_y547v")
+icon_alignment = 1
+expand_icon = true
 
-[node name="SawtoothButton" type="Button" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1672542252]
-custom_minimum_size = Vector2(400, 200)
+[node name="SawtoothButton" type="Button" parent="MainMargin/InternalMargin/VBoxContainer/HBoxContainer" unique_id=1672542252]
+custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
 theme_override_font_sizes/font_size = 60
 toggle_mode = true
 button_group = SubResource("ButtonGroup_r4oya")
-text = "SAWTOOTH"
+icon = ExtResource("5_1n6bp")
+icon_alignment = 1
+expand_icon = true
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1181174082]
+[node name="GridContainer" type="GridContainer" parent="MainMargin/InternalMargin/VBoxContainer" unique_id=1795305821]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+columns = 2
+
+[node name="FirstOctave" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer" unique_id=2034496834 instance=ExtResource("6_youy0")]
+layout_mode = 2
+
+[node name="Label" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/FirstOctave/PanelContainer/VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(2034496834, 714571369) index="0" unique_id=1930934504]
+text = "First Octave"
+
+[node name="Slider" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/FirstOctave/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(2034496834, 671882150) index="1" unique_id=1804668453]
+min_value = -1.0
+max_value = 10.0
+value = -1.0
+rounded = true
+
+[node name="NumberOfOctaves" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer" unique_id=836043339 instance=ExtResource("6_youy0")]
+layout_mode = 2
+
+[node name="Label" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/NumberOfOctaves/PanelContainer/VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(836043339, 714571369) index="0" unique_id=1930934504]
+text = "Number of octaves"
+
+[node name="Slider" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/NumberOfOctaves/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(836043339, 671882150) index="1" unique_id=1804668453]
+min_value = 1.0
+max_value = 12.0
+value = 1.0
+rounded = true
+
+[node name="Attack" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer" unique_id=170201989 instance=ExtResource("6_youy0")]
+layout_mode = 2
+
+[node name="Label" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/Attack/PanelContainer/VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(170201989, 714571369) index="0" unique_id=1930934504]
 text = "Attack"
 
-[node name="AttackSlider" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=1913026072]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-max_value = 5.0
+[node name="Slider" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/Attack/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(170201989, 671882150) index="1" unique_id=1804668453]
+max_value = 10.0
 step = 0.1
-tick_count = 50
-ticks_on_borders = true
 
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1077574135]
+[node name="Decay" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer" unique_id=2036550437 instance=ExtResource("6_youy0")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+
+[node name="Label" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/Decay/PanelContainer/VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(2036550437, 714571369) index="0" unique_id=1930934504]
 text = "Decay"
 
-[node name="DecaySlider" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=723267355]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-max_value = 5.0
+[node name="Slider" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/Decay/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(2036550437, 671882150) index="1" unique_id=1804668453]
+max_value = 10.0
 step = 0.1
-tick_count = 50
-ticks_on_borders = true
 
-[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1316700550]
+[node name="Sustain" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer" unique_id=1266772446 instance=ExtResource("6_youy0")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+
+[node name="Label" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/Sustain/PanelContainer/VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(1266772446, 714571369) index="0" unique_id=1930934504]
 text = "Sustain"
 
-[node name="SustainSlider" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=2064677055]
-custom_minimum_size = Vector2(0, 40)
+[node name="Release" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer" unique_id=2121851299 instance=ExtResource("6_youy0")]
 layout_mode = 2
-tick_count = 100
-ticks_on_borders = true
 
-[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer" unique_id=484984551]
-layout_mode = 2
-theme_override_font_sizes/font_size = 50
+[node name="Label" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/Release/PanelContainer/VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(2121851299, 714571369) index="0" unique_id=1930934504]
 text = "Release"
 
-[node name="ReleaseSlider" type="HSlider" parent="MarginContainer/VBoxContainer" unique_id=1227081943]
-custom_minimum_size = Vector2(0, 40)
-layout_mode = 2
-max_value = 5.0
+[node name="Slider" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/Release/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(2121851299, 671882150) index="1" unique_id=1804668453]
+max_value = 10.0
 step = 0.1
-tick_count = 50
-ticks_on_borders = true
 
-[node name="CloseButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=59519976]
+[node name="CloseButton" type="Button" parent="MainMargin/InternalMargin/VBoxContainer" unique_id=59519976]
 layout_mode = 2
+size_flags_vertical = 10
 theme_override_font_sizes/font_size = 60
 text = "Close"
+
+[connection signal="pressed" from="MainMargin/InternalMargin/VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
+
+[editable path="MainMargin/InternalMargin/VBoxContainer/GridContainer/FirstOctave"]
+[editable path="MainMargin/InternalMargin/VBoxContainer/GridContainer/NumberOfOctaves"]
+[editable path="MainMargin/InternalMargin/VBoxContainer/GridContainer/Attack"]
+[editable path="MainMargin/InternalMargin/VBoxContainer/GridContainer/Decay"]
+[editable path="MainMargin/InternalMargin/VBoxContainer/GridContainer/Sustain"]
+[editable path="MainMargin/InternalMargin/VBoxContainer/GridContainer/Release"]

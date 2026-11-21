@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://bi05i5324hbes"]
+
+[ext_resource type="Script" uid="uid://6u0l3l1ui151" path="res://scenes/slidercontrol/slider_control.gd" id="1_mf0k3"]
+[ext_resource type="Texture2D" uid="uid://bwmr7yt3jkj1u" path="res://assets/circle_48dp_FFFFFF_FILL1_wght400_GRAD0_opsz48.png" id="2_ck6rm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_r4oya"]
+font_size = 32
+
+[sub_resource type="LabelSettings" id="LabelSettings_numdg"]
+font_size = 32
+
+[node name="SliderControl" type="MarginContainer" unique_id=2034496834]
+offset_right = 933.0
+offset_bottom = 198.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_mf0k3")
+
+[node name="PanelContainer" type="PanelContainer" parent="." unique_id=766274986]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer" unique_id=671882150]
+layout_mode = 2
+
+[node name="HBoxContainer" type="PanelContainer" parent="PanelContainer/VBoxContainer" unique_id=714571369]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="Label" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1930934504]
+layout_mode = 2
+size_flags_horizontal = 0
+text = "Name"
+label_settings = SubResource("LabelSettings_r4oya")
+
+[node name="Value" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer" unique_id=1748822680]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "2212"
+label_settings = SubResource("LabelSettings_numdg")
+
+[node name="Slider" type="HSlider" parent="PanelContainer/VBoxContainer" unique_id=1804668453]
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_icons/grabber = ExtResource("2_ck6rm")
+theme_override_icons/grabber_highlight = ExtResource("2_ck6rm")
+
+[connection signal="value_changed" from="PanelContainer/VBoxContainer/Slider" to="." method="_on_slider_value_changed"]
