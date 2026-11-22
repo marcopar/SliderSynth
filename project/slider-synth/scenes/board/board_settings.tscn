@@ -41,16 +41,16 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="ColorRect" type="ColorRect" parent="MainMargin" unique_id=633161486]
+[node name="BorderColor" type="ColorRect" parent="MainMargin" unique_id=633161486]
 layout_mode = 2
 color = Color(0.4630682, 0.4630682, 0.463068, 1)
 
 [node name="InternalMargin" type="MarginContainer" parent="MainMargin" unique_id=2049746266]
 layout_mode = 2
-theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
 
 [node name="ColorRect" type="ColorRect" parent="MainMargin/InternalMargin" unique_id=501075993]
 layout_mode = 2

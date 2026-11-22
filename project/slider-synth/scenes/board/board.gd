@@ -47,10 +47,6 @@ func build_voices() -> void:
 		voice.sustain_level = sustain
 		voice.release_seconds = release
 		voices.append(voice)
-	
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func calculate_frequency(x: float) -> float:
 	return 32.7032 * pow(2.0, first_octave - 1 + (x / main_area.size.x) * number_of_octaves)

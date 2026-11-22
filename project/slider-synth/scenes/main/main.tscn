@@ -25,17 +25,17 @@ theme_override_constants/separation = 0
 layout_mode = 2
 size_flags_vertical = 3
 border_color = Color(1, 0, 0, 1)
-first_octave = 0
+first_octave = -1
 number_of_octaves = 11
 
 [node name="RedSettingsButton" type="Button" parent="VBoxContainer/RedBoard" unique_id=1010187072]
-custom_minimum_size = Vector2(48, 48)
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -32.0
-offset_bottom = 32.0
+offset_left = -64.0
+offset_bottom = 64.0
 grow_horizontal = 0
 
 [node name="GreenBoard" parent="VBoxContainer" unique_id=1955030298 instance=ExtResource("1_hyk8p")]
@@ -44,10 +44,30 @@ size_flags_vertical = 3
 border_color = Color(0, 1, 0, 1)
 first_octave = 2
 
+[node name="GreenSettingsButton" type="Button" parent="VBoxContainer/GreenBoard" unique_id=1897484140]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+
 [node name="CyanBoard" parent="VBoxContainer" unique_id=785175181 instance=ExtResource("1_hyk8p")]
 layout_mode = 2
 size_flags_vertical = 3
 border_color = Color(0, 1, 1, 1)
+
+[node name="CyanSettingsButton" type="Button" parent="VBoxContainer/CyanBoard" unique_id=507382019]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
 
 [node name="YellowBoard" parent="VBoxContainer" unique_id=2011065176 instance=ExtResource("1_hyk8p")]
 layout_mode = 2
@@ -55,4 +75,17 @@ size_flags_vertical = 3
 border_color = Color(1, 1, 0, 1)
 first_octave = 6
 
+[node name="YellowSettingsButton" type="Button" parent="VBoxContainer/YellowBoard" unique_id=1731831453]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_bottom = 64.0
+grow_horizontal = 0
+
 [connection signal="pressed" from="VBoxContainer/RedBoard/RedSettingsButton" to="." method="_on_red_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/GreenBoard/GreenSettingsButton" to="." method="_on_green_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/CyanBoard/CyanSettingsButton" to="." method="_on_cyan_settings_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/YellowBoard/YellowSettingsButton" to="." method="_on_yellow_settings_button_pressed"]

@@ -12,6 +12,8 @@ class_name BoardSettings
 @onready var square_button: Button = $MainMargin/InternalMargin/VBoxContainer/HBoxContainer/SquareButton
 @onready var triangle_button: Button = $MainMargin/InternalMargin/VBoxContainer/HBoxContainer/TriangleButton
 @onready var sawtooth_button: Button = $MainMargin/InternalMargin/VBoxContainer/HBoxContainer/SawtoothButton
+@onready var border_color_rect: ColorRect = $MainMargin/BorderColor
+
 
 @export
 var board: Board:
@@ -22,11 +24,8 @@ var board: Board:
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	border_color_rect.color = board.border_color
 	set_settings_values()
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
 
 func set_board_values() -> void:
 	if sine_button.button_pressed:
