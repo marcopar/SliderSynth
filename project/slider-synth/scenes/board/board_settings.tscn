@@ -106,6 +106,8 @@ expand_icon = true
 
 [node name="GridContainer" type="GridContainer" parent="MainMargin/InternalMargin/VBoxContainer" unique_id=1795305821]
 layout_mode = 2
+theme_override_constants/h_separation = 10
+theme_override_constants/v_separation = 10
 columns = 2
 
 [node name="FirstOctave" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer" unique_id=2034496834 instance=ExtResource("6_youy0")]
@@ -158,6 +160,10 @@ layout_mode = 2
 [node name="Label" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/Sustain/PanelContainer/VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(1266772446, 714571369) index="0" unique_id=1930934504]
 text = "Sustain"
 
+[node name="Slider" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/Sustain/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(1266772446, 671882150) index="1" unique_id=1804668453]
+max_value = 1.0
+step = 0.01
+
 [node name="Release" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer" unique_id=2121851299 instance=ExtResource("6_youy0")]
 layout_mode = 2
 
@@ -168,16 +174,57 @@ text = "Release"
 max_value = 10.0
 step = 0.1
 
-[node name="PanelContainer" type="PanelContainer" parent="MainMargin/InternalMargin/VBoxContainer" unique_id=1439088134]
+[node name="EchoDelay" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer" unique_id=1475119451 instance=ExtResource("6_youy0")]
 layout_mode = 2
-size_flags_vertical = 3
+
+[node name="Label" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/EchoDelay/PanelContainer/VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(1475119451, 714571369) index="0" unique_id=1930934504]
+text = "Echo delay (0=OFF)"
+
+[node name="Slider" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/EchoDelay/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(1475119451, 671882150) index="1" unique_id=1804668453]
+max_value = 5.0
+step = 0.01
+value = 0.25
+
+[node name="EchoFeedback" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer" unique_id=998686086 instance=ExtResource("6_youy0")]
+layout_mode = 2
+
+[node name="Label" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/EchoFeedback/PanelContainer/VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(998686086, 714571369) index="0" unique_id=1930934504]
+text = "Echo feedback"
+
+[node name="Slider" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/EchoFeedback/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(998686086, 671882150) index="1" unique_id=1804668453]
+max_value = 0.95
+step = 0.01
+value = 0.35
+
+[node name="ReverbRoomSize" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer" unique_id=1977353596 instance=ExtResource("6_youy0")]
+layout_mode = 2
+
+[node name="Label" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/ReverbRoomSize/PanelContainer/VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(1977353596, 714571369) index="0" unique_id=1930934504]
+text = "Reverb room size (0=OFF)"
+
+[node name="Slider" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/ReverbRoomSize/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(1977353596, 671882150) index="1" unique_id=1804668453]
+max_value = 1.0
+step = 0.01
+value = 0.5
+
+[node name="ReverbDampingLevel" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer" unique_id=80925114 instance=ExtResource("6_youy0")]
+layout_mode = 2
+
+[node name="Label" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/ReverbDampingLevel/PanelContainer/VBoxContainer/HBoxContainer" parent_id_path=PackedInt32Array(80925114, 714571369) index="0" unique_id=1930934504]
+text = "Reverb damping"
+
+[node name="Slider" parent="MainMargin/InternalMargin/VBoxContainer/GridContainer/ReverbDampingLevel/PanelContainer/VBoxContainer" parent_id_path=PackedInt32Array(80925114, 671882150) index="1" unique_id=1804668453]
+max_value = 1.0
+step = 0.01
+value = 0.5
 
 [node name="CloseButton" type="Button" parent="MainMargin/InternalMargin/VBoxContainer" unique_id=59519976]
 layout_mode = 2
-size_flags_vertical = 8
+size_flags_vertical = 10
 theme_override_font_sizes/font_size = 60
 text = "Close"
 
+[connection signal="value_changed" from="MainMargin/InternalMargin/VBoxContainer/GridContainer/FirstOctave/PanelContainer/VBoxContainer/Slider" to="." method="_on_first_octave_slider_value_changed"]
 [connection signal="pressed" from="MainMargin/InternalMargin/VBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
 
 [editable path="MainMargin/InternalMargin/VBoxContainer/GridContainer/FirstOctave"]
@@ -186,3 +233,7 @@ text = "Close"
 [editable path="MainMargin/InternalMargin/VBoxContainer/GridContainer/Decay"]
 [editable path="MainMargin/InternalMargin/VBoxContainer/GridContainer/Sustain"]
 [editable path="MainMargin/InternalMargin/VBoxContainer/GridContainer/Release"]
+[editable path="MainMargin/InternalMargin/VBoxContainer/GridContainer/EchoDelay"]
+[editable path="MainMargin/InternalMargin/VBoxContainer/GridContainer/EchoFeedback"]
+[editable path="MainMargin/InternalMargin/VBoxContainer/GridContainer/ReverbRoomSize"]
+[editable path="MainMargin/InternalMargin/VBoxContainer/GridContainer/ReverbDampingLevel"]

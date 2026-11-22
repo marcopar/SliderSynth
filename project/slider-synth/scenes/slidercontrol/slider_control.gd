@@ -11,7 +11,10 @@ func _ready() -> void:
 	update_label(slider.value)
 
 func update_label(v: float) -> void:
-	value.text = "%.1f" % v
+	if step_decimals(v) == 0:
+		value.text = "%d" % v
+	else:
+		value.text = "%.2f" % v
 	
 func _on_slider_value_changed(value: float) -> void:
 	update_label(value)

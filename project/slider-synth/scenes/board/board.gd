@@ -27,6 +27,14 @@ var decay: float = 0.1
 var sustain: float = 0.7
 @export
 var release: float = 0.1
+@export
+var echo_delay: float = 0.25
+@export
+var echo_feedback: float = 0.35
+@export
+var reverb_room_size: float = 0.5
+@export
+var reverb_damping: float = 0.5
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,6 +43,7 @@ func _ready() -> void:
 	synth = MiniSynth.new()
 	add_child(synth)
 	build_voices()
+	build_effects()
 
 func build_voices() -> void:
 	for v in voices:
@@ -48,6 +57,25 @@ func build_voices() -> void:
 		voice.release_seconds = release
 		voices.append(voice)
 
+func build_effects() -> void:
+	synth.clear_effects()
+	var echo: SynthEcho = synth.create_echo()
+	if echo_delay == 0:
+		echo.enabled = false
+	else:
+		echo.enabled = true
+		echo.delay_seconds = echo_delay
+		echo.feedback_level = echo_feedback
+		
+	var reverb: SynthReverb = synth.create_reverb()
+	if reverb_room_size == 0:
+		reverb.enabled = false
+	else:
+		reverb.enabled = true
+		reverb.room_size = reverb_room_size
+		reverb.damping_level = reverb_damping
+	
+	
 func calculate_frequency(x: float) -> float:
 	return 32.7032 * pow(2.0, first_octave - 1 + (x / main_area.size.x) * number_of_octaves)
 
@@ -57,11 +85,11 @@ func _on_main_area_gui_input(event: InputEvent) -> void:
 		if touchEvent.pressed:
 			var frequency: float = calculate_frequency(touchEvent.position.x)
 			voices[touchEvent.index].note_on(frequency)
-			label.text = "%f" % frequency
+			label.text = "%.2f" % frequency
 		else:
 			voices[touchEvent.index].note_off()
 	if event is InputEventScreenDrag:
 		var dragEvent: InputEventScreenDrag = event
 		var frequency: float = calculate_frequency(dragEvent.position.x)
 		voices[dragEvent.index].sweep_to(frequency, 0.01)
-		label.text = "%f" % frequency
+		label.text = "%.2f" % frequency

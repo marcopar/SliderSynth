@@ -4,7 +4,7 @@ extends SynthEffect
 
 var delay_seconds: float = 0.25:
 	set(value):
-		if not _valid_range(value, 0.001, 2.0, "delay_seconds"):
+		if not _valid_range(value, 0.001, 5.0, "delay_seconds"):
 			return
 		var frames := maxi(1, roundi(value * _sample_rate))
 		if frames != _delay.size():
