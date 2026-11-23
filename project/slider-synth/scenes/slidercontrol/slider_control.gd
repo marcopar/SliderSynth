@@ -16,5 +16,5 @@ func update_label(v: float) -> void:
 	else:
 		value.text = "%.2f" % v
 	
-func _on_slider_value_changed(value: float) -> void:
-	update_label(value)
+func _on_slider_value_changed(v: float) -> void:
+	update_label(v)

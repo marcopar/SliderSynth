@@ -24,6 +24,7 @@ theme_override_constants/separation = 0
 [node name="RedBoard" parent="VBoxContainer" unique_id=2023423202 instance=ExtResource("1_hyk8p")]
 layout_mode = 2
 size_flags_vertical = 3
+board_name = "RedBoard"
 border_color = Color(1, 0, 0, 1)
 first_octave = -1
 number_of_octaves = 11
@@ -41,6 +42,7 @@ grow_horizontal = 0
 [node name="GreenBoard" parent="VBoxContainer" unique_id=1955030298 instance=ExtResource("1_hyk8p")]
 layout_mode = 2
 size_flags_vertical = 3
+board_name = "GreenBoard"
 border_color = Color(0, 1, 0, 1)
 first_octave = 2
 
@@ -57,6 +59,7 @@ grow_horizontal = 0
 [node name="CyanBoard" parent="VBoxContainer" unique_id=785175181 instance=ExtResource("1_hyk8p")]
 layout_mode = 2
 size_flags_vertical = 3
+board_name = "CyanBoard"
 border_color = Color(0, 1, 1, 1)
 
 [node name="CyanSettingsButton" type="Button" parent="VBoxContainer/CyanBoard" unique_id=507382019]
@@ -72,6 +75,7 @@ grow_horizontal = 0
 [node name="YellowBoard" parent="VBoxContainer" unique_id=2011065176 instance=ExtResource("1_hyk8p")]
 layout_mode = 2
 size_flags_vertical = 3
+board_name = "YellowBoard"
 border_color = Color(1, 1, 0, 1)
 first_octave = 6
 

@@ -2,21 +2,21 @@ extends Control
 
 class_name BoardSettings
 
-@onready var first_octave: SliderControl = $MainMargin/InternalMargin/VBoxContainer/GridContainer/FirstOctave
-@onready var number_of_octaves: SliderControl = $MainMargin/InternalMargin/VBoxContainer/GridContainer/NumberOfOctaves
-@onready var attack: SliderControl = $MainMargin/InternalMargin/VBoxContainer/GridContainer/Attack
-@onready var decay: SliderControl = $MainMargin/InternalMargin/VBoxContainer/GridContainer/Decay
-@onready var sustain: SliderControl = $MainMargin/InternalMargin/VBoxContainer/GridContainer/Sustain
-@onready var release: SliderControl = $MainMargin/InternalMargin/VBoxContainer/GridContainer/Release
-@onready var sine_button: Button = $MainMargin/InternalMargin/VBoxContainer/HBoxContainer/SineButton
-@onready var square_button: Button = $MainMargin/InternalMargin/VBoxContainer/HBoxContainer/SquareButton
-@onready var triangle_button: Button = $MainMargin/InternalMargin/VBoxContainer/HBoxContainer/TriangleButton
-@onready var sawtooth_button: Button = $MainMargin/InternalMargin/VBoxContainer/HBoxContainer/SawtoothButton
-@onready var border_color_rect: ColorRect = $MainMargin/BorderColor
-@onready var echo_delay: SliderControl = $MainMargin/InternalMargin/VBoxContainer/GridContainer/EchoDelay
-@onready var echo_feedback: SliderControl = $MainMargin/InternalMargin/VBoxContainer/GridContainer/EchoFeedback
-@onready var reverb_room_size: SliderControl = $MainMargin/InternalMargin/VBoxContainer/GridContainer/ReverbRoomSize
-@onready var reverb_damping_level: SliderControl = $MainMargin/InternalMargin/VBoxContainer/GridContainer/ReverbDampingLevel
+@onready var border_color_rect: ColorRect = $BorderColorRect
+@onready var sine_button: Button = $MarginContainer/MarginContainer/VBoxContainer/HBoxContainerWaveforms/SineButton
+@onready var square_button: Button = $MarginContainer/MarginContainer/VBoxContainer/HBoxContainerWaveforms/SquareButton
+@onready var triangle_button: Button = $MarginContainer/MarginContainer/VBoxContainer/HBoxContainerWaveforms/TriangleButton
+@onready var sawtooth_button: Button = $MarginContainer/MarginContainer/VBoxContainer/HBoxContainerWaveforms/SawtoothButton
+@onready var first_octave: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/FirstOctave
+@onready var number_of_octaves: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/NumberOfOctaves
+@onready var attack: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/Attack
+@onready var decay: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/Decay
+@onready var sustain: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/Sustain
+@onready var release: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/Release
+@onready var echo_delay: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/EchoDelay
+@onready var echo_feedback: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/EchoFeedback
+@onready var reverb_room_size: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/ReverbRoomSize
+@onready var reverb_damping_level: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/ReverbDampingLevel
 
 
 @export
@@ -53,6 +53,7 @@ func set_board_values() -> void:
 	board.reverb_damping = reverb_damping_level.slider.value
 	board.build_voices()
 	board.build_effects()
+	board.save_config()
 
 func set_settings_values() -> void:
 	match(board.waveform):
@@ -88,3 +89,7 @@ func _on_close_button_pressed() -> void:
 func _on_first_octave_slider_value_changed(value: float) -> void:
 	number_of_octaves.slider.max_value = 11 - first_octave.slider.value
 	number_of_octaves.slider.value = min(number_of_octaves.slider.value, number_of_octaves.slider.max_value)
+
+
+func _on_apply_button_pressed() -> void:
+	set_board_values()
