@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="SliderSynth"
+config/version="3.0.0"
 run/main_scene="uid://cc6lk7vc8gjft"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://bj4ojl4c5am40"
 
 [display]
 
