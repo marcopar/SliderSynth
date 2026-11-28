@@ -7,6 +7,7 @@ class_name BoardSettings
 @onready var square_button: Button = $MarginContainer/MarginContainer/VBoxContainer/HBoxContainerWaveforms/SquareButton
 @onready var triangle_button: Button = $MarginContainer/MarginContainer/VBoxContainer/HBoxContainerWaveforms/TriangleButton
 @onready var sawtooth_button: Button = $MarginContainer/MarginContainer/VBoxContainer/HBoxContainerWaveforms/SawtoothButton
+@onready var reverse_sawtooth_button: Button = $MarginContainer/MarginContainer/VBoxContainer/HBoxContainerWaveforms/ReverseSawtoothButton
 @onready var first_octave: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/FirstOctave
 @onready var number_of_octaves: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/NumberOfOctaves
 @onready var attack: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/Attack
@@ -17,21 +18,24 @@ class_name BoardSettings
 @onready var echo_feedback: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/EchoFeedback
 @onready var reverb_room_size: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/ReverbRoomSize
 @onready var reverb_damping_level: SliderControl = $MarginContainer/MarginContainer/VBoxContainer/GridContainer/ReverbDampingLevel
+@onready var test_board: Board = $MarginContainer/MarginContainer/VBoxContainer/TestBoard
 
 
 @export
-var board: Board:
+var main_board: Board:
 	set(new_board):
-		board = new_board
+		main_board = new_board
 	get:
-		return board
+		return main_board
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	border_color_rect.color = board.border_color
-	set_settings_values()
+	border_color_rect.color = main_board.border_color
+	test_board.label.text = "TEST AREA"
+	set_settings_values(main_board)
+	set_board_values(test_board)
 
-func set_board_values() -> void:
+func set_board_values(board: Board) -> void:
 	if sine_button.button_pressed:
 		board.waveform = SynthVoice.Waveform.SINE
 	if square_button.button_pressed:
@@ -40,6 +44,8 @@ func set_board_values() -> void:
 		board.waveform = SynthVoice.Waveform.TRIANGLE
 	if sawtooth_button.button_pressed:
 		board.waveform = SynthVoice.Waveform.SAWTOOTH
+	if reverse_sawtooth_button.button_pressed:
+		board.waveform = SynthVoice.Waveform.REVERSE_SAWTOOTH
 			
 	board.first_octave = int(first_octave.slider.value)
 	board.number_of_octaves = int(number_of_octaves.slider.value)
@@ -55,7 +61,7 @@ func set_board_values() -> void:
 	board.build_effects()
 	board.save_config()
 
-func set_settings_values() -> void:
+func set_settings_values(board: Board) -> void:
 	match(board.waveform):
 		SynthVoice.Waveform.SINE:
 			sine_button.button_pressed = true
@@ -68,6 +74,9 @@ func set_settings_values() -> void:
 			pass
 		SynthVoice.Waveform.SAWTOOTH:
 			sawtooth_button.button_pressed = true
+			pass
+		SynthVoice.Waveform.REVERSE_SAWTOOTH:
+			reverse_sawtooth_button.button_pressed = true
 			pass
 	first_octave.slider.value = board.first_octave
 	number_of_octaves.slider.max_value = 11 - board.first_octave
@@ -82,7 +91,7 @@ func set_settings_values() -> void:
 	reverb_damping_level.slider.value = board.reverb_damping
 
 func _on_close_button_pressed() -> void:
-	set_board_values()
+	set_board_values(main_board)
 	queue_free()
 
 
@@ -92,4 +101,4 @@ func _on_first_octave_slider_value_changed(value: float) -> void:
 
 
 func _on_apply_button_pressed() -> void:
-	set_board_values()
+	set_board_values(test_board)

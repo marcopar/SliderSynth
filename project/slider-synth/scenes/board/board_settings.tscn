@@ -5,24 +5,20 @@
 [ext_resource type="Texture2D" uid="uid://cv10g4peu6ukr" path="res://assets/square-wave.svg" id="3_youy0"]
 [ext_resource type="Texture2D" uid="uid://cj058trwir7hb" path="res://assets/triangle-wave.svg" id="4_y547v"]
 [ext_resource type="Texture2D" uid="uid://clk62oprjowmf" path="res://assets/sawtooth-wave.svg" id="5_1n6bp"]
+[ext_resource type="Texture2D" uid="uid://cljnfd3tljrlg" path="res://assets/reverse-sawtooth-wave.svg" id="6_y547v"]
 [ext_resource type="PackedScene" uid="uid://bi05i5324hbes" path="res://scenes/slidercontrol/slider_control.tscn" id="6_youy0"]
+[ext_resource type="PackedScene" uid="uid://p53bf2mp512o" path="res://scenes/board/board.tscn" id="8_1n6bp"]
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_r4oya"]
 
 [node name="BoardSettings" type="PanelContainer" unique_id=1211911647]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -485.0
-offset_top = -413.0
-offset_right = 485.0
-offset_bottom = 413.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_urex5")
 
 [node name="BorderColorRect" type="ColorRect" parent="." unique_id=1499000261]
@@ -37,7 +33,7 @@ theme_override_constants/margin_bottom = 5
 
 [node name="ColorRect" type="ColorRect" parent="MarginContainer" unique_id=501075993]
 layout_mode = 2
-color = Color(0.23248088, 0.23248091, 0.23248085, 1)
+color = Color(0.21230483, 0.21230483, 0.21230483, 1)
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer" unique_id=1719046413]
 layout_mode = 2
@@ -92,6 +88,16 @@ theme_override_font_sizes/font_size = 60
 toggle_mode = true
 button_group = SubResource("ButtonGroup_r4oya")
 icon = ExtResource("5_1n6bp")
+icon_alignment = 1
+expand_icon = true
+
+[node name="ReverseSawtoothButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainerWaveforms" unique_id=1254387343]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+theme_override_font_sizes/font_size = 60
+toggle_mode = true
+button_group = SubResource("ButtonGroup_r4oya")
+icon = ExtResource("6_y547v")
 icon_alignment = 1
 expand_icon = true
 
@@ -209,9 +215,14 @@ max_value = 1.0
 step = 0.01
 value = 0.5
 
+[node name="TestBoard" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=962121432 instance=ExtResource("8_1n6bp")]
+layout_mode = 2
+size_flags_vertical = 3
+border_color = Color(0.40146014, 0.40146014, 0.40146014, 1)
+
 [node name="HBoxContainerButtons" type="PanelContainer" parent="MarginContainer/MarginContainer/VBoxContainer" unique_id=1918887637]
 layout_mode = 2
-size_flags_vertical = 10
+size_flags_vertical = 8
 
 [node name="ApplyButton" type="Button" parent="MarginContainer/MarginContainer/VBoxContainer/HBoxContainerButtons" unique_id=1829292148]
 layout_mode = 2
